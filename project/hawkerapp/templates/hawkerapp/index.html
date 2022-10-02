@@ -21,7 +21,7 @@
     {%endif%}
     {% for location in results %}
         {% for stall in location%}
-            <div><a href="{% url 'profile' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div>
+            <div><a href="{% url 'stallprofilecustomer' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div>
         {% endfor%}
     {% endfor %}
 {%endblock%}

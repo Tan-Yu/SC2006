@@ -1,0 +1,44 @@
+{% extends "hawkerapp/layout.html" %}
+{% block head %}
+    <title>{{stall.name}}</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+    </style>
+{% endblock %}
+{% block body%}
+<a href="{% url 'index'%}"> Back to Main Page </a>
+    <h1>This is the customer persective </h1>
+    <h1> {{stall.name}} @ {{stall.location}}</h1>
+    <h1> Menu </h1>
+    <ul>
+        {% for food in menu %}
+        <li> {{food}}</li>
+        {% endfor %}
+    </ul>
+    <h1> Reviews </h1>
+    <table>
+        <tr>
+          <th>User</th>
+          <th>Description</th>
+          <th>Rating</th>
+        </tr>
+        {% for review in reviews %}
+        <tr>
+            <td>{{review.owner}}</td>
+            <td>{{review.description}}</td>
+            <td>{{review.rating}}/5</td>
+        </tr>
+        {% endfor %}
+      </table>
+    <div><a href="{% url 'addreview' stall_id=stall.id %}">Add A Review To This Stall</a></div>
+{% endblock %}

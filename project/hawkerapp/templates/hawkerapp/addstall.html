@@ -1,0 +1,23 @@
+{% extends "hawkerapp/layout.html" %}
+{%block head%}
+    <title> Add Stall </title>
+{%endblock%}
+{%block body%}
+    <h1>Add A New Stall Profile</h1>
+    <form action="{% url 'addstall'%}" method="post">
+        {% csrf_token %}
+        <input type="text" name="stallname" placeholder="Stall Name">
+        <select name="location">
+            {% for loc in location %}
+                <option value="{{ loc.id }}">{{loc.name}}</option>
+            {% endfor %}
+        </select>
+        <select name="food" multiple>
+            {% for f in food %}
+                <option value="{{ f.id }}">{{f.name}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+    <div> <a href="{%url 'hawkerprofile' %}"> Go Back To Profile Page </a> </div>
+{%endblock%}
