@@ -2,5 +2,6 @@ from . import views
 from django.urls import path
 
 urlpatterns = [ 
-    path(r'', views.default_map, name="default"),
+    path('',views.maps, name = 'coordinates-form'),
+    # path('map', views.maps, name = 'maps'),
 ]

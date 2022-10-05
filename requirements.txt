@@ -1,1 +1,0 @@
-pip install django django-extensions pandas plotly django-geojson fastkml branca jinja2 requests folium

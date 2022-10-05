@@ -16,7 +16,7 @@ class Location(models.Model):
 
 class Stall(models.Model):
     owner = models.CharField(max_length=128)
-    name=models.CharField(max_length=128)
+    name = models.CharField(max_length=128)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="stalls")
     foods = models.ManyToManyField(Food,related_name="stalls")
     def __str__(self):
