@@ -1,0 +1,38 @@
+# Metadata for Hawker Centres
+---
+Identifier: 'aeaf4704-5be1-4b33-993d-c70d8dcc943e'
+Name: 'hawker-centres'
+Title: 'Hawker Centres'
+Description: 'location of hawker centre'
+Topics:
+  - 'Environment'
+Keywords:
+  - 'centre'
+  - 'hawker'
+  - 'onemap'
+  - 'themes'
+Publisher:
+  Name: 'National Environment Agency'
+  Admin 1:
+    Name: 'Alvin Choo'
+    Department: 'NATIONAL ENVIRONMENT AGENCY'
+    Email: 'alvin_choo@nea.gov.sg'
+Sources:
+  - 'National Environment Agency'
+Source Url: 'http://www.onemap.sg/API/Help/'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Annual'
+Last Updated: '2022-04-11T02:48:16.104307'
+Resources:
+  -
+    Identifier: 'c2e33097-4f46-4ef5-91db-64eef290ca85'
+    Title: 'Hawker Centres (KML)'
+    Url: 'https://geo.data.gov.sg/hawkercentre/2021/09/01/kml/hawkercentre.kml'
+    Format: 'KML'
+    Last Updated: '2021-08-31T16:00:00'
+  -
+    Identifier: '8a6c2f75-5511-4e03-b8f2-23ce67d30b28'
+    Title: 'Hawker Centres (GEOJSON)'
+    Url: 'https://geo.data.gov.sg/hawkercentre/2021/09/01/geojson/hawkercentre.geojson'
+    Format: 'GeoJSON'
+    Last Updated: '2021-08-31T16:00:00'
