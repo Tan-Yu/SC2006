@@ -16,7 +16,7 @@
     </style>
 {% endblock %}
 {% block body%}
-<a href="{% url 'index'%}"> Back to Main Page </a>
+<a href="{% url 'hawkerapp:index'%}"> Back to Main Page </a>
     <h1>This is the customer persective </h1>
     <h1> {{stall.name}} @ {{stall.location}}</h1>
     <h1> Menu </h1>
@@ -40,5 +40,5 @@
         </tr>
         {% endfor %}
       </table>
-    <div><a href="{% url 'addreview' stall_id=stall.id %}">Add A Review To This Stall</a></div>
+    <div><a href="{% url 'hawkerapp:addreview' stall_id=stall.id %}">Add A Review To This Stall</a></div>
 {% endblock %}

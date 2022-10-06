@@ -3,10 +3,6 @@
 
 {%block body%}
 
-
-
-
-
     <a href="{% url 'hawkerapp:logout'%}"> Logout </a>
     <div> Welcome {{request.user}} </div>
     <h1>Wholesale App</h1>
@@ -24,7 +20,7 @@
     {%endif%}
     {% for location in results %}
         {% for stall in location%}
-            <div><a href="{% url 'stallprofilecustomer' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div>
+            <div><a href="{% url 'hawkerapp:stallprofilecustomer' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div>
         {% endfor%}
     {% endfor %}
 {%endblock%}

@@ -4,7 +4,7 @@
 {%endblock%}
 {%block body%}
     <h1>Add A New Review for {{stall.name}} </h1>
-    <form action="{% url 'addreview' stall_id=stall.id %}" method="post">
+    <form action="{% url 'hawkerapp:addreview' stall_id=stall.id %}" method="post">
         {% csrf_token %}
         <input type="text" name="description" placeholder="Description">
         <select name="rating">
@@ -17,5 +17,5 @@
         </select>
         <input type="submit">
     </form>
-    <div> <a href="{%url 'stallprofilecustomer' stall_id=stall.id %}"> Go Back To Stall Profile Page </a> </div>
+    <div> <a href="{%url 'hawkerapp:stallprofilecustomer' stall_id=stall.id %}"> Go Back To Stall Profile Page </a> </div>
 {%endblock%}

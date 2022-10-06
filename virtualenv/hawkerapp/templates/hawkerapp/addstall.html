@@ -4,7 +4,7 @@
 {%endblock%}
 {%block body%}
     <h1>Add A New Stall Profile</h1>
-    <form action="{% url 'addstall'%}" method="post">
+    <form action="{% url 'hawkerapp:addstall'%}" method="post">
         {% csrf_token %}
         <input type="text" name="stallname" placeholder="Stall Name">
         <select name="location">
@@ -19,5 +19,5 @@
         </select>
         <input type="submit">
     </form>
-    <div> <a href="{%url 'hawkerprofile' %}"> Go Back To Profile Page </a> </div>
+    <div> <a href="{%url 'hawkerapp:hawkerprofile' %}"> Go Back To Profile Page </a> </div>
 {%endblock%}
