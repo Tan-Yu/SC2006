@@ -35,6 +35,7 @@ body {
 	flex-direction: row;
 	width: 100%;
 	/* background-color: aqua	; */
+	min-height:50px;
 
 	align-items: center;
 	justify-content: space-around;
@@ -864,35 +865,98 @@ width: max-content;}
 	flex-direction: column;
 
 	overflow: visible;
-	height: 200px
+	padding-top: 40px;
 }
 
-.sp-seach-box-div .sp-search-box{
+.search-page .sp-search-box{
 	/* background-color: rgba(232, 226, 226, 0.5); */
 	border: 1px solid #F5765E ;
 	width: 100%;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	padding: 5px 10px 5px 10px;
 	margin: 10px;
 	margin-bottom: 0;
 
 	border-radius: 20px;
 	display: flex;
 	flex-direction: row;
-	align-content: space-around;
+
+	justify-content: space-between;
 	margin-left: 0;
 }
 
-
-.sp-search-text{
+.search-page .sp-search-box input[type = text]{
+	width: 80%;
 	color:#F5765E;
-	text-align: center;
 	padding-left: 15px;
 	margin-right: auto;
 	display: flex;
 	align-items: center;
-	font-weight: 500;
+	font-weight: 600;
+	border: transparent;
 }
+
+.search-page .sp-search-box input[type = text]::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color:#F5765E;
+	font-weight: 400;
+	opacity: 0.5;
+  }
+
+.search-page .sp-search-box input[type = submit]{
+	background-color: #F5765E;
+	color:#FFFFFF;
+	padding: 7px;
+	padding-left: 40px;
+	padding-right: 40px;
+	border-radius: 20px;
+	border: 0px;
+	font-weight: 600;
+	align-items: center;
+
+}
+
+.search-page .sp-search-box input[type = submit]:hover{
+	background-color: white;
+	color: #F5765E;
+}
+
+.search-button-div{
+	/* width: 100%; */
+	/* margin: 5px; */
+	padding-right: 8px;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+
+.search-categorty-selection{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+} 
+.search-categorty-selection .search-food, .search-stall{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20%;
+}
+
+.search-categorty-selection a{
+	font-size:20px;
+	text-decoration: none;
+}
+
+.search-categorty-selection .current-search-page{
+	border-bottom: 3px solid #F5765E;
+}
+
+.search-categorty-selection a:active{
+	font-size:60px;
+	text-decoration: none;
+}
+
 
 .sp-filters-div{
 	color:#F5765E;
@@ -927,3 +991,4 @@ width: max-content;}
 	width:50%;
 	height: 50%;
 } */
+
