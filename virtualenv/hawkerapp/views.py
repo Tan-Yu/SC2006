@@ -164,7 +164,7 @@ def news(request):
 
 
 def about(request):
-    return HttpResponse("about")
+    return HttpResponse("contact")
 
 
 def contact(request):
@@ -172,4 +172,15 @@ def contact(request):
 
 
 def login(request):
-    return HttpResponse("login")
+    return HttpResponse(Food.objects.values_list(name))
+
+def search(request):
+    if request.method == "POST":
+        search = request.POST['search']
+        foods = Food.objects.filter(name__contains = search)
+        return render(request, "hawkerapp/search.html", {
+            'search' : search,
+            'foods': foods
+        })
+    else:
+        return render(request, "hawkerapp/search.html", {})

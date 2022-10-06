@@ -1,0 +1,121 @@
+{%extends "hawkerapp/layout.html" %}
+{% load static %}
+
+{%block body%}
+    
+
+
+    
+
+
+
+    <div class="search-page">
+        <div class="sp-seach-box-div">
+    
+    
+            <div class="sp-search-box">
+                <div class="sp-search-text">Search Foods, Hawker Centers</div>
+                <div class="search-button-div">
+                    <button class ="search-button">Search</button>            
+                </div>
+            </div>
+    
+            <div class="sp-filters-div">
+                <div class="sp-filter">
+                    <p>Distance</p>
+                    <!-- <object class="drop-arrow" data="jumpstory-download20220904-094235.svg"></object> -->
+                    <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
+                        <g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;">
+                        <g style="fill:#515151;">
+                        <path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z"/>
+                        </g>
+                        </g>
+                        </svg>
+                </div>
+                <div class="sp-filter">
+                    <p>Rating</p>
+                    <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
+                        <g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;">
+                        <g style="fill:#515151;">
+                        <path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z"/>
+                        </g>
+                        </g>
+                        </svg>
+                </div>
+                <div class="sp-filter">
+                    <p>Cuisine</p>
+                    <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
+                        <g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;">
+                        <g style="fill:#515151;">
+                        <path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z"/>
+                        </g>
+                        </g>
+                        </svg>
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'hawkerapp:logout'%}"> Logout </a>
+        <div> Welcome {{request.user}} </div>
+        <form action="{% url 'hawkerapp:search'%}" method="post">
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search">
+            <select name="searchby">
+                <option value="hawkercentre">Hawker Centre</option>
+                <option value="food">Food</option>
+            </select>
+            <input type="submit">
+        </form>
+        {% if search %}
+        <h1> you searched for {{search}}</h1>
+        {% for food in foods %}
+
+        <div class="stall-cards-div">
+            
+            <div class="stall-card">
+                <div class="stall-card-inner-div">
+                    <img src="{% static 'hawkerapp/images/Chomp-Chomp.jpeg'%}">
+                    <div class="stall-info">
+                        <div class="stall-header">
+                            <h2 class="stall-name">{{food.name}}</h2>
+                            <div class="stall-rating">
+                                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19.7836 6.77578L13.8328 5.91093L11.1726 0.517965C11.1 0.370309 10.9805 0.250778 10.8328 0.178121C10.4625 -0.00469103 10.0125 0.147653 9.82733 0.517965L7.16717 5.91093L1.21639 6.77578C1.05233 6.79922 0.902327 6.87656 0.787483 6.99375C0.648643 7.13645 0.572136 7.32843 0.574773 7.52752C0.57741 7.7266 0.658975 7.91649 0.801545 8.05547L5.10701 12.2531L4.08983 18.1805C4.06597 18.3183 4.08123 18.4602 4.13387 18.5898C4.18651 18.7195 4.27442 18.8318 4.38764 18.914C4.50086 18.9962 4.63486 19.0451 4.77444 19.055C4.91401 19.065 5.05358 19.0356 5.17733 18.9703L10.5 16.1719L15.8226 18.9703C15.968 19.0477 16.1367 19.0734 16.2984 19.0453C16.7062 18.975 16.9805 18.5883 16.9101 18.1805L15.893 12.2531L20.1984 8.05547C20.3156 7.94062 20.393 7.79062 20.4164 7.62656C20.4797 7.2164 20.1937 6.83672 19.7836 6.77578Z" fill="black"/>
+                                    </svg>
+                                <h3>4.3</h3>
+                            </div>
+                        </div>
+                        <div class="stall-location">
+                            <h3>Bedok interchange</h3>
+                        </div>
+                        <div class="stall-reviews">
+                            <ul>
+                                <li>good stuff</li>
+                                <li>i want to bathe in a  bathtub of this delicious goodness.  I have not known joy until my lips tasted this ambrosia I want to stuff my face in this stuff until my belt bucket explodes into a million tiny pieces.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stall-price">
+                        <h2>$4.3</h2>
+                        <p>Per pax</p>
+                    </div>
+                </div>
+            </div>
+        
+            
+            
+            {% endfor %}
+            {% else %}
+                <h1>no results.</h1>
+            {% endif %}
+            </div>
+            
+    
+    
+            
+
+    </div>
+
+
+
+    
+{%endblock%}
