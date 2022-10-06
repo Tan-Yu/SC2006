@@ -61,7 +61,7 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("index")
+            return redirect("hawkerapp:index")
         else:
             messages.info(request, "Username OR Password Is Incorrect")
     context = {}
@@ -69,7 +69,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect("login")
+    return redirect("hawkerapp:login")
 
 @login_required(login_url="login")
 @customer_only
@@ -171,8 +171,7 @@ def contact(request):
     return HttpResponse("contact")
 
 
-def login(request):
-    return HttpResponse(Food.objects.values_list(name))
+
 
 def search(request):
     if request.method == "POST":
