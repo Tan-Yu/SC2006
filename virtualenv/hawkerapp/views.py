@@ -1,7 +1,7 @@
 from collections import UserString
 # from socket import fromshare
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import Group
 from hawkerapp.decorators import unauthenticated_user
@@ -158,3 +158,18 @@ def addstall(request):
     food = Food.objects.all()
     return render(request, "hawkerapp/addstall.html", {"location":location, "food":food})
 
+
+def news(request):
+    return HttpResponse("NEWS")
+
+
+def about(request):
+    return HttpResponse("about")
+
+
+def contact(request):
+    return HttpResponse("contact")
+
+
+def login(request):
+    return HttpResponse("login")
