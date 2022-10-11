@@ -17,15 +17,21 @@
             <h2>Wholesale App</h2>
         </div>
         <div class="header-right">
-            <div class="post-button-div">
-                <button class ="post-button">Post</button>
-            </div>
-            <ul class="menu">
-                <li><a href="{% url 'index' %}" >Home</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'customerprofile' %}"> Profile </a></li>
-                
-            </ul>
+            {% for group in request.user.groups.all %}
+                {% if group.name == "customer" %}
+                    <ul class="menu">
+                        <li><a href="{% url 'index' %}" >Home</a></li>
+                        <li><a href="{% url 'customerprofile' %}"> Profile </a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                {% endif %}
+                {% if group.name == "hawker" %}
+                    <ul class="menu">
+                        <li><a href="{% url 'addstall' %}" >Add Stall</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
         {%block body%}
