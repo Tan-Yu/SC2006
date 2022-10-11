@@ -1,11 +1,71 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {%block head%}
-        {%endblock%}
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-xwequiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'hawkerapp/styles.css' %}" />
+
+    <title>Document</title>
+</head>
     <body>
+        <!-- -- Header Menu -->
+        <div class="header-div">
+        <div>
+            <h2>Wholesale App</h2>
+        </div>
+        <div class="header-right">
+            <div class="post-button-div">
+                <button class ="post-button">Post</button>
+            </div>
+            <ul class="menu">
+                <li><a href="{% url 'index' %}" >Home</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'customerprofile' %}"> Profile </a></li>
+                
+            </ul>
+        </div>
+    </div>
         {%block body%}
         {%endblock%}
     </body>
+
+    <!-- -- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="footer-top">
+                <div class="footer-left">
+                    <h2>About</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam lacinia id nibh vel finibus. Nulla ullamcorper cursus lorem ut sagittis. In hac habitasse platea dictumst. Sed maximus imperdiet pharetra. Vestibulum ut ex eu velit fringilla porttitor maximus et lorem. Fusce viverra tempor sagittis. Curabitur vel aliquet eros. Ut semper, lectus a lobortis finibus, </p>
+                </div>
+                <div class="footer-right">
+                    <h2>Categories</h2>
+                    <ul class="footer-categories">
+                        <li>BBQ</li>
+                        <li>Seafood</li>
+                        <li>Malay</li>
+                        <li>Indian</li>
+                        <li>Chinese</li>
+                        <li>Western</li>
+                        <li>Desserts</li>
+                        <li>Drinks</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>Copyright © 2017 All Rights Reserved by Scanfcode.                </p>
+                </div>
+                <div class="footer-socials">
+                    <div class="footer-social-bubble"></div>
+                    <div class="footer-social-bubble"></div>
+                    <div class="footer-social-bubble"></div>
+                    <div class="footer-social-bubble"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
 </html>

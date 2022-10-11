@@ -16,8 +16,8 @@
     </style>
 {% endblock %}
 {% block body%}
-<a href="{% url 'index'%}"> Back to Main Page </a>
-    <h1>This is the hawker persective </h1>
+<div> <a href="{% url 'logout'%}"> Logout </a> </div>
+<div> <a href="{% url 'index'%}"> Back to Main Page </a> </div>
     <h1> {{stall.name}} @ {{stall.location}}</h1>
     <h1> Menu </h1>
     <ul>
@@ -25,6 +25,10 @@
         <li> {{food}}</li>
         {% endfor %}
     </ul>
+    <div>
+      <h1> Overall Rating:  {{mean_rating}}</h1>
+      <h1> Number of Reviews: {{reviews_count}} </h1>
+    </div>
     <h1> Reviews </h1>
     <table>
         <tr>
@@ -39,5 +43,5 @@
             <td>{{review.rating}}/5</td>
         </tr>
         {% endfor %}
-      </table>
+    </table>
 {% endblock %}

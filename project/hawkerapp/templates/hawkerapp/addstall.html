@@ -3,6 +3,8 @@
     <title> Add Stall </title>
 {%endblock%}
 {%block body%}
+    <div> <a href="{% url 'logout'%}"> Logout </a> </div>
+    <div> <a href="{%url 'hawkerprofile' %}"> Go Back To Profile Page </a> </div>
     <h1>Add A New Stall Profile</h1>
     <form action="{% url 'addstall'%}" method="post">
         {% csrf_token %}
@@ -17,7 +19,7 @@
                 <option value="{{ f.id }}">{{f.name}}</option>
             {% endfor %}
         </select>
+        <input type="file" name="photo" accept="image/*" placeholder="Upload A Picture Of Your Stall">
         <input type="submit">
     </form>
-    <div> <a href="{%url 'hawkerprofile' %}"> Go Back To Profile Page </a> </div>
 {%endblock%}

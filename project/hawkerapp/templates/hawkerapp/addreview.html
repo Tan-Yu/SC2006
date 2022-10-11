@@ -3,6 +3,9 @@
     <title> Add Review  </title>
 {%endblock%}
 {%block body%}
+    <div> <a href="{%url 'stallprofilecustomer' stall_id=stall.id %}"> Go Back To Stall Profile Page </a> </div>
+    <div> <a href="{% url 'customerprofile' %}"> Go To Your Profile Page </a> </div>
+    <div> <a href="{% url 'logout'%}"> Logout </a> </div>
     <h1>Add A New Review for {{stall.name}} </h1>
     <form action="{% url 'addreview' stall_id=stall.id %}" method="post">
         {% csrf_token %}
@@ -17,5 +20,4 @@
         </select>
         <input type="submit">
     </form>
-    <div> <a href="{%url 'stallprofilecustomer' stall_id=stall.id %}"> Go Back To Stall Profile Page </a> </div>
 {%endblock%}

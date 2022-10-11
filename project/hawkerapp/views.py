@@ -74,38 +74,8 @@ def logoutUser(request):
 @login_required(login_url="login")
 @customer_only
 def index(request):
-    results = []
-    if request.method == "POST":
-        if request.POST["searchby"] == "hawkercentre":
-            loc = request.POST["search"]
-            location_list = Location.objects.filter(name__icontains = loc)
-            num_stores = 0
-            for location in location_list:
-                stalls = Stall.objects.filter(location=location)
-                results.append(stalls)
-                num_stores += stalls.count()
-            if num_stores == 0:
-                results = None
-            return render(request, "hawkerapp/index.html", {"results":results})
-        else:
-            food = request.POST["search"]
-            food_list = Food.objects.filter(name__icontains = food)
-            repeat = []
-            num_stores = 0
-            for food in food_list:
-                to_add = []
-                stalls = Stall.objects.filter(foods=food)
-                for stall in stalls:
-                    if stall.id not in repeat:
-                        to_add.append(stall.id)
-                        num_stores += 1
-                results.append(Stall.objects.filter(pk__in=to_add))
-                repeat += to_add
-            if num_stores == 0:
-                results = None
-            return render(request, "hawkerapp/index.html", {"results": results})
-
-    return render(request, "hawkerapp/index.html", {"results":results})
+    locations = Location.objects.all().order_by('rating')[:5]
+    return render(request, "hawkerapp/index.html", {"locations":locations})
 
 
 @login_required(login_url="login")
@@ -113,7 +83,16 @@ def index(request):
 def stallprofilehawker(request, stall_id): 
     stall = Stall.objects.get(id=stall_id)
     reviews = stall.reviews.all()
-    return render(request, "hawkerapp/stallprofilehawker.html", {"stall":stall, "menu":stall.foods.all(), "reviews": reviews})
+    mean_rating = 0
+    reviews_count = 0
+    for review in reviews:
+        mean_rating += review.rating
+        reviews_count += 1
+    if reviews_count > 0:
+        mean_rating = mean_rating/reviews_count
+    else:
+        mean_rating = 0
+    return render(request, "hawkerapp/stallprofilehawker.html", {"stall":stall, "menu":stall.foods.all(), "reviews": reviews, "mean_rating":round(mean_rating,1), "reviews_count":reviews_count})
     
 @login_required(login_url="login")
 @hawker_only
@@ -121,13 +100,28 @@ def hawkerprofile(request):
     stalls = Stall.objects.filter(owner=request.user)
     return render(request, "hawkerapp/hawkerprofile.html", {"stalls":stalls})
 
+@login_required(login_url="login")
+@customer_only
+def customerprofile(request):
+    reviews = Review.objects.filter(owner=request.user)
+    return render(request, "hawkerapp/customerprofile.html", {"reviews":reviews})
+
 
 @login_required(login_url="login")
 @customer_only
 def stallprofilecustomer(request, stall_id): 
     stall = Stall.objects.get(id=stall_id)
     reviews = stall.reviews.all()
-    return render(request, "hawkerapp/stallprofilecustomer.html", {"stall":stall, "menu":stall.foods.all(), "reviews":reviews})
+    mean_rating = 0
+    has_rating = False
+    for review in reviews:
+        mean_rating += review.rating
+        has_rating = True
+    if has_rating:
+        mean_rating = mean_rating/reviews.count()
+    else:
+        mean_rating = 0
+    return render(request, "hawkerapp/stallprofilecustomer.html", {"stall":stall, "menu":stall.foods.all(), "reviews":reviews, "mean_rating":round(mean_rating,1), "reviews_count":reviews.count()})
 
 @login_required(login_url="login")
 @customer_only
@@ -138,7 +132,8 @@ def addreview(request, stall_id):
         rating = request.POST["rating"]
         review = Review(stall=stall, owner=request.user, description=description, rating=int(rating))
         review.save()
-        return render(request, "hawkerapp/stallprofilecustomer.html", {"stall":stall, "menu":stall.foods.all()})
+        reviews = stall.reviews.all()
+        return render(request, "hawkerapp/stallprofilecustomer.html", {"stall":stall, "menu":stall.foods.all(), "reviews":reviews})
     return render(request, "hawkerapp/addreview.html", {"stall":stall})
 
 @login_required(login_url="login")
@@ -158,3 +153,37 @@ def addstall(request):
     food = Food.objects.all()
     return render(request, "hawkerapp/addstall.html", {"location":location, "food":food})
 
+
+@login_required(login_url="login")
+@customer_only
+def resultspage(request):
+    results = []
+    if request.method == "POST":
+        if request.POST["searchby"] == "hawkercentre":
+            loc = request.POST["search"]
+            location_list = Location.objects.filter(name__icontains = loc)
+            num_stores = 0
+            for location in location_list:
+                stalls = Stall.objects.filter(location=location)
+                results.append(stalls)
+                num_stores += stalls.count()
+            if num_stores == 0:
+                results = None
+            return render(request, "hawkerapp/resultspage.html", {"results":results})
+        else:
+            food = request.POST["search"]
+            food_list = Food.objects.filter(name__icontains = food)
+            repeat = []
+            num_stores = 0
+            for food in food_list:
+                to_add = []
+                stalls = Stall.objects.filter(foods=food)
+                for stall in stalls:
+                    if stall.id not in repeat:
+                        to_add.append(stall.id)
+                        num_stores += 1
+                results.append(Stall.objects.filter(pk__in=to_add))
+                repeat += to_add
+            if num_stores == 0:
+                results = None
+            return render(request, "hawkerapp/resultspage.html", {"results": results})

@@ -10,7 +10,7 @@
     <h2> Stalls </h2>
     <ul>
         {% for stall in stalls %}
-            <li><div><a href="{% url 'stallprofilehawker' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div></li>
+            <li><div><a href="{% url 'stallprofilehawker' stall_id=stall.id %}">{{stall.name}}</a></div></li>
         {% endfor %}
     </ul>
 {%endblock%}

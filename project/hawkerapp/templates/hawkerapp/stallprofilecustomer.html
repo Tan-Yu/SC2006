@@ -16,8 +16,6 @@
     </style>
 {% endblock %}
 {% block body%}
-<a href="{% url 'index'%}"> Back to Main Page </a>
-    <h1>This is the customer persective </h1>
     <h1> {{stall.name}} @ {{stall.location}}</h1>
     <h1> Menu </h1>
     <ul>
@@ -25,6 +23,10 @@
         <li> {{food}}</li>
         {% endfor %}
     </ul>
+    <div>
+      <h1> Overall Rating:  {{mean_rating}}</h1>
+      <h1> Number of Reviews: {{reviews_count}} </h1>
+    </div>
     <h1> Reviews </h1>
     <table>
         <tr>
@@ -41,4 +43,5 @@
         {% endfor %}
       </table>
     <div><a href="{% url 'addreview' stall_id=stall.id %}">Add A Review To This Stall</a></div>
+    <div><a href="http://maps.google.com/?q={{stall.location}}">Find Me!</a></div>
 {% endblock %}
