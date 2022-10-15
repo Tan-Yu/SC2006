@@ -1,4 +1,4 @@
-from hawkerapp.models import Food, Location, Stall, Review
+from hawkerapp.models import *
 import csv
 
 def run():

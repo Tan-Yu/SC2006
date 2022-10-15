@@ -1,0 +1,13 @@
+{% extends 'maps/base.html' %} {% block content %}
+<div class="header-bar">
+  <a href="{% url 'maps' %}">&#8592; Map</a>
+</div>
+
+<div class="card-body">
+  <form method="POST" action="">
+    {% csrf_token %} {{form.as_p}}
+    <input class="button" type="submit" value="submit" />
+  </form>
+</div>
+
+{% endblock %}
