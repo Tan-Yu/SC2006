@@ -74,8 +74,9 @@ def logoutUser(request):
 @login_required(login_url="login")
 @customer_only
 def index(request):
-    locations = Location.objects.all().order_by('rating')[:5]
-    return render(request, "hawkerapp/index.html", {"locations":locations})
+    locations = Location.objects.all().order_by('rating')
+    reviews = Review.objects.all().order_by("-id")
+    return render(request, "hawkerapp/index.html", {"locations":locations, "reviews":reviews})
 
 
 @login_required(login_url="login")
@@ -130,7 +131,8 @@ def addreview(request, stall_id):
     if request.method =="POST":
         description = request.POST["description"]
         rating = request.POST["rating"]
-        review = Review(stall=stall, owner=request.user, description=description, rating=int(rating))
+        image = request.FILES["image"]
+        review = Review(stall=stall, owner=request.user, description=description, rating=int(rating), image=image)
         review.save()
         reviews = stall.reviews.all()
         return render(request, "hawkerapp/stallprofilecustomer.html", {"stall":stall, "menu":stall.foods.all(), "reviews":reviews})
@@ -156,7 +158,7 @@ def addstall(request):
 
 @login_required(login_url="login")
 @customer_only
-def resultspage(request):
+def resultspagebysearchbar(request):
     results = []
     if request.method == "POST":
         if request.POST["searchby"] == "hawkercentre":
@@ -169,7 +171,7 @@ def resultspage(request):
                 num_stores += stalls.count()
             if num_stores == 0:
                 results = None
-            return render(request, "hawkerapp/resultspage.html", {"results":results})
+            return render(request, "hawkerapp/resultspagebysearchbar.html", {"results":results})
         else:
             food = request.POST["search"]
             food_list = Food.objects.filter(name__icontains = food)
@@ -186,4 +188,11 @@ def resultspage(request):
                 repeat += to_add
             if num_stores == 0:
                 results = None
-            return render(request, "hawkerapp/resultspage.html", {"results": results})
+            return render(request, "hawkerapp/resultspagebysearchbar.html", {"results": results})
+
+
+@login_required(login_url="login")
+@customer_only
+def location(request,location_name):
+    location = Location.objects.get(name=location_name)
+    return render(request, "hawkerapp/location.html", {"location":location})

@@ -12,5 +12,7 @@ urlpatterns = [
     path("customerprofile/", views.customerprofile, name="customerprofile"),
     path("addstall/", views.addstall, name="addstall"),
     path("addreview/<int:stall_id>", views.addreview, name="addreview"),
-    path("resultspage/", views.resultspage, name="resultspage")
+    path("resultspagebysearchbar/", views.resultspagebysearchbar, name="resultspagebysearchbar"),
+    path("location/<str:location_name>", views.location, name="location")
 ]
+

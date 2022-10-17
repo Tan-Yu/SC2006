@@ -7,7 +7,7 @@
     <div> <a href="{% url 'customerprofile' %}"> Go To Your Profile Page </a> </div>
     <div> <a href="{% url 'logout'%}"> Logout </a> </div>
     <h1>Add A New Review for {{stall.name}} </h1>
-    <form action="{% url 'addreview' stall_id=stall.id %}" method="post">
+    <form action="{% url 'addreview' stall_id=stall.id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="text" name="description" placeholder="Description">
         <select name="rating">
@@ -18,6 +18,7 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
+        <input type="file" name="image" accept="image/*">
         <input type="submit">
     </form>
 {%endblock%}

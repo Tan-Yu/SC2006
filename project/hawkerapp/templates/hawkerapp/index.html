@@ -6,27 +6,28 @@
     <div class="landing-text">
         <h1>Convenient. <br> Affordable. Delicious</h1>
     </div>
-    <form action = "{% url 'resultspage' %} " method="post">
+    <form action = "{% url 'resultspagebysearchbar' %} " method="post">
         <div class="landing-toggles">
             <div class="toggle-button-div">
                 {% comment %} <button class ="toggle-button">Food</button>
                 <button class ="toggle-button">Hawker</button> {% endcomment %}
                 {% csrf_token %}
-                <select name="searchby">
+                <select class="toggle-button" name="searchby">
                     <option value="hawkercentre">Hawker Centre</option>
                     <option value="food">Food</option>
                 </select>
             </div>
         </div>
         <div class="landing-search-box">
-            <div class="landing-search-text"><input type="text" name="search" placeholder="Search Foods, Hawker Centres" style="background-color:transparent; border-top-style:hidden; border-left-style:none; border-right-style:none; border-bottom-style:none; width:200px;"></div>
+            <div class="landing-search-text"><input type="text" name="search" placeholder="Search Foods, Hawker Centres" style="outline:none; border-style: none;; background-color:transparent; border-top-style:hidden; border-left-style:none; border-right-style:none; border-bottom-style:none; width:200px;"></div>
             <div class="search-button-div">
                 {% comment %} <button class ="search-button">Search</button>             {% endcomment %}
-                <input type="submit">
+                <input type="submit" class="search-button">
             </div>
         </div>
     </form>
-    <div class="landing-filters-div">
+    {% comment %} commented out fileter for now {% endcomment %}
+    {% comment %} <div class="landing-filters-div">
         <div class="landing-filter">
             <p>Distance</p>
             <!-- <object class="drop-arrow" data="jumpstory-download20220904-094235.svg"></object> -->
@@ -58,7 +59,7 @@
                 </g>
                 </svg>
         </div> 
-    </div>
+    </div> {% endcomment %}
     <div class="landing-top-categories-text">
         <h2>Top Categories</h2>
     </div>
@@ -276,36 +277,14 @@
             </g>
             </svg>
 
-    </div>
+    </div> 
     <div class="landing-top-hawker-center">
-        {% comment %} {% for location in locations %}
+        {% for location in locations %}
             <div class="landing-top-hawker-center-profile">
                 <p class="hawker-center-name">{{location.name}}</p>
-                <img class="hawker-center-picture" src={{location.photo.url}}>
+                <a href="{% url 'location' location_name=location.name %}"><img class = "hawker-center-picture" src ={{location.image.url}}></a>
             </div>
-        {% endfor %} {% endcomment %}
-        <div class="landing-top-hawker-center-profile">
-            <p class="hawker-center-name">East Coast Lagoon Hawker Center</p>
-            <img class="hawker-center-picture" src="{% static 'hawkerapp/images/East-Coast-Lagoon.jpeg' %}">
-        </div>
-
-
-        <div class="landing-top-hawker-center-profile">
-            <p class="hawker-center-name">Newton Hawker Center</p>
-            <img class="hawker-center-picture" src="{% static 'hawkerapp/images/Newton-Food-Center.jpeg' %}">
-        </div>
-
-
-        <div class="landing-top-hawker-center-profile">
-            <p class="hawker-center-name">Chomp Chomp</p>
-            <img class="hawker-center-picture" src="{% static 'hawkerapp/images/Chomp-Chomp.jpeg' %}">
-        </div>
-
-
-        <div class="landing-top-hawker-center-profile">
-            <p class="hawker-center-name">Maxwell</p>
-            <img class="hawker-center-picture" src="{% static 'hawkerapp/images/Maxwell.jpeg' %}">
-        </div>
+        {% endfor %} 
     </div> 
 </div>
 
@@ -322,296 +301,66 @@
     </div>
 
     <div class="landing-reviews-scroll">
-        <div class="review-post">
-            <div class="review-profile">
-                <img class="profile-pic" src="{% static '/hawkerapp/images/Duck-Rice.jpeg' %}">
-                <div class="user-metrics">
-                    <p class="username">JohnDoe1221</p>
-                    <p class="user-stats">999 Points</p>
+        {% for review in reviews %}
+            <a class="review-post" href="{%url 'stallprofilecustomer' stall_id=review.stall_id %}" style="text-decoration: none;">
+                <div class="review-profile">
+                    <img class="profile-pic" src={{review.image.url}}>
+                    <div class="user-metrics">
+                        <p class="username">{{review.owner}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="review-info">
-                <div class="post-hawker-center-name">
-                    <p class="superscript">Hawker Center</p>
-                    <p class="main-entry">Bedok Interchange Hawker</p>
+                <div class="review-info">
+                    <div class="post-hawker-center-name">
+                        <p class="superscript">Hawker Center</p>
+                        <p class="main-entry">{{review.stall.location.name}}</p>
+                    </div>
+                    <div class="post-stall-name">
+                        <p class="superscript">Stall</p>
+                        <p class="main-entry">{{review.stall.name}}</p>
+                    </div>
                 </div>
-                <div class="post-stall-name">
-                    <p class="superscript">Stall</p>
-                    <p class="main-entry">Tong Fatt Chicken Rice</p>
+                <div class="review-description">
+                    <div class="post-description">
+                        <span class="rating__stars" style="--rating: {{review.rating}};"></span>
+                        <div class="rating__number">
+                    </div>
+                    <p class="main-entry">{{review.description}}</p>
+                    </div>
                 </div>
-                <div class="post-dish-name">
-                    <p class="superscript">Dish Name</p>
-                    <p class="main-entry">Roasted Chicken Name</p>
-                </div>
-            </div>
-            <div class="review-description">
-                <div class="post-description">
-                    <span class="rating__stars" style="--rating: 3;"></span>
-                    <div class="rating__number">
-                </div>
-                <p class="main-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit ultricies leo, sed convallis tortor ultrices sit amet. Morbi euismod leo erat, pharetra convallis leo pharetra ac. Nunc sed ultrices nunc, ut consequat ligula. Integer felis ante, porta eu bibendum sed, dictum non magna. Suspendisse nunc justo, laoreet eget tortor eu, fermentum congue risus. Morbi nibh magna, varius a odio sit amet, ullamcorper pellentesque elit. Suspendisse aliquet magna id nunc elementum scelerisque. Ut ex eros, ultrices vitae efficitur euismod, mattis vel arcu. Cras eu sem vel orci pretium gravida. Maecenas sagittis sollicitudin mi sit amet maximus. Nulla orci massa, iaculis in molestie a, rutrum a dolor.</p>
-                </div>
-            </div>
-            <div class="review-post-right-div">
-                <div class="review-post-metrics">
-                    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_140_810)">
-                        <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_140_810">
-                        <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                    <p class="post-likes">100</p>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
-                        </svg>
-                    <p class="post-comments">100</p>
-                    <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
-                        </svg>                        
-                </div>
-                <div class="review-dotdotdot">
-                    <p class="more-options">•••</p>
-                </div>
-            </div>
-        </div>
-        <div class="review-post">
-            <div class="review-profile">
-                <img class="profile-pic" src="{% static '/hawkerapp/images/Duck-Rice.jpeg' %}">
-                <div class="user-metrics">
-                    <p class="username">JohnDoe1221</p>
-                    <p class="user-stats">999 Points</p>
-                </div>
-            </div>
-            <div class="review-info">
-                <div class="post-hawker-center-name">
-                    <p class="superscript">Hawker Center</p>
-                    <p class="main-entry">Bedok Interchange Hawker</p>
-                </div>
-                <div class="post-stall-name">
-                    <p class="superscript">Stall</p>
-                    <p class="main-entry">Tong Fatt Chicken Rice</p>
-                </div>
-                <div class="post-dish-name">
-                    <p class="superscript">Dish Name</p>
-                    <p class="main-entry">Roasted Chicken Name</p>
-                </div>
-            </div>
-            <div class="review-description">
-                <div class="post-description">
-                    <span class="rating__stars" style="--rating: 3;"></span>
-                    <div class="rating__number">
-                </div>
-                <p class="main-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit ultricies leo, sed convallis tortor ultrices sit amet. Morbi euismod leo erat, pharetra convallis leo pharetra ac. Nunc sed ultrices nunc, ut consequat ligula. Integer felis ante, porta eu bibendum sed, dictum non magna. Suspendisse nunc justo, laoreet eget tortor eu, fermentum congue risus. Morbi nibh magna, varius a odio sit amet, ullamcorper pellentesque elit. Suspendisse aliquet magna id nunc elementum scelerisque. Ut ex eros, ultrices vitae efficitur euismod, mattis vel arcu. Cras eu sem vel orci pretium gravida. Maecenas sagittis sollicitudin mi sit amet maximus. Nulla orci massa, iaculis in molestie a, rutrum a dolor.</p>
-                </div>
-            </div>
-            <div class="review-post-right-div">
-                <div class="review-post-metrics">
-                    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_140_810)">
-                        <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_140_810">
-                        <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                    <p class="post-likes">100</p>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
-                        </svg>
-                    <p class="post-comments">100</p>
-                    <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
-                        </svg>                        
-                </div>
-                <div class="review-dotdotdot">
-                    <p class="more-options">•••</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="review-post">
-            <div class="review-profile">
-                <img class="profile-pic" src="{% static '/hawkerapp/images/Duck-Rice.jpeg' %}">
-                <div class="user-metrics">
-                    <p class="username">JohnDoe1221</p>
-                    <p class="user-stats">999 Points</p>
-                </div>
-            </div>
-            <div class="review-info">
-                <div class="post-hawker-center-name">
-                    <p class="superscript">Hawker Center</p>
-                    <p class="main-entry">Bedok Interchange Hawker</p>
-                </div>
-                <div class="post-stall-name">
-                    <p class="superscript">Stall</p>
-                    <p class="main-entry">Tong Fatt Chicken Rice</p>
-                </div>
-                <div class="post-dish-name">
-                    <p class="superscript">Dish Name</p>
-                    <p class="main-entry">Roasted Chicken Name</p>
-                </div>
-            </div>
-            <div class="review-description">
-                <div class="post-description">
-                    <span class="rating__stars" style="--rating: 3;"></span>
-                    <div class="rating__number">
-                </div>
-                <p class="main-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit ultricies leo, sed convallis tortor ultrices sit amet. Morbi euismod leo erat, pharetra convallis leo pharetra ac. Nunc sed ultrices nunc, ut consequat ligula. Integer felis ante, porta eu bibendum sed, dictum non magna. Suspendisse nunc justo, laoreet eget tortor eu, fermentum congue risus. Morbi nibh magna, varius a odio sit amet, ullamcorper pellentesque elit. Suspendisse aliquet magna id nunc elementum scelerisque. Ut ex eros, ultrices vitae efficitur euismod, mattis vel arcu. Cras eu sem vel orci pretium gravida. Maecenas sagittis sollicitudin mi sit amet maximus. Nulla orci massa, iaculis in molestie a, rutrum a dolor.</p>
-                </div>
-            </div>
-            <div class="review-post-right-div">
-                <div class="review-post-metrics">
-                    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_140_810)">
-                        <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_140_810">
-                        <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                    <p class="post-likes">100</p>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
-                        </svg>
-                    <p class="post-comments">100</p>
-                    <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
-                        </svg>                        
-                </div>
-                <div class="review-dotdotdot">
-                    <p class="more-options">•••</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="review-post">
-            <div class="review-profile">
-                <img class="profile-pic" src="{% static '/hawkerapp/images/Duck-Rice.jpeg' %}">
-                <div class="user-metrics">
-                    <p class="username">JohnDoe1221</p>
-                    <p class="user-stats">999 Points</p>
-                </div>
-            </div>
-            <div class="review-info">
-                <div class="post-hawker-center-name">
-                    <p class="superscript">Hawker Center</p>
-                    <p class="main-entry">Bedok Interchange Hawker</p>
-                </div>
-                <div class="post-stall-name">
-                    <p class="superscript">Stall</p>
-                    <p class="main-entry">Tong Fatt Chicken Rice</p>
-                </div>
-                <div class="post-dish-name">
-                    <p class="superscript">Dish Name</p>
-                    <p class="main-entry">Roasted Chicken Name</p>
-                </div>
-            </div>
-            <div class="review-description">
-                <div class="post-description">
-                    <span class="rating__stars" style="--rating: 3;"></span>
-                    <div class="rating__number">
-                </div>
-                <p class="main-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit ultricies leo, sed convallis tortor ultrices sit amet. Morbi euismod leo erat, pharetra convallis leo pharetra ac. Nunc sed ultrices nunc, ut consequat ligula. Integer felis ante, porta eu bibendum sed, dictum non magna. Suspendisse nunc justo, laoreet eget tortor eu, fermentum congue risus. Morbi nibh magna, varius a odio sit amet, ullamcorper pellentesque elit. Suspendisse aliquet magna id nunc elementum scelerisque. Ut ex eros, ultrices vitae efficitur euismod, mattis vel arcu. Cras eu sem vel orci pretium gravida. Maecenas sagittis sollicitudin mi sit amet maximus. Nulla orci massa, iaculis in molestie a, rutrum a dolor.</p>
-                </div>
-            </div>
-            <div class="review-post-right-div">
-                <div class="review-post-metrics">
-                    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_140_810)">
-                        <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_140_810">
-                        <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                    <p class="post-likes">100</p>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
-                        </svg>
-                    <p class="post-comments">100</p>
-                    <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
-                        </svg>                        
-                </div>
-                <div class="review-dotdotdot">
-                    <p class="more-options">•••</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="review-post">
-            <div class="review-profile">
-                <img class="profile-pic" src="{% static '/hawkerapp/images/Duck-Rice.jpeg' %}">
-                <div class="user-metrics">
-                    <p class="username">JohnDoe1221</p>
-                    <p class="user-stats">999 Points</p>
-                </div>
-            </div>
-            <div class="review-info">
-                <div class="post-hawker-center-name">
-                    <p class="superscript">Hawker Center</p>
-                    <p class="main-entry">Bedok Interchange Hawker</p>
-                </div>
-                <div class="post-stall-name">
-                    <p class="superscript">Stall</p>
-                    <p class="main-entry">Tong Fatt Chicken Rice</p>
-                </div>
-                <div class="post-dish-name">
-                    <p class="superscript">Dish Name</p>
-                    <p class="main-entry">Roasted Chicken Name</p>
-                </div>
-            </div>
-            <div class="review-description">
-                <div class="post-description">
-                    <span class="rating__stars" style="--rating: 3;"></span>
-                    <div class="rating__number">
-                </div>
-                <p class="main-entry">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit ultricies leo, sed convallis tortor ultrices sit amet. Morbi euismod leo erat, pharetra convallis leo pharetra ac. Nunc sed ultrices nunc, ut consequat ligula. Integer felis ante, porta eu bibendum sed, dictum non magna. Suspendisse nunc justo, laoreet eget tortor eu, fermentum congue risus. Morbi nibh magna, varius a odio sit amet, ullamcorper pellentesque elit. Suspendisse aliquet magna id nunc elementum scelerisque. Ut ex eros, ultrices vitae efficitur euismod, mattis vel arcu. Cras eu sem vel orci pretium gravida. Maecenas sagittis sollicitudin mi sit amet maximus. Nulla orci massa, iaculis in molestie a, rutrum a dolor.</p>
-                </div>
-            </div>
-            <div class="review-post-right-div">
-                <div class="review-post-metrics">
-                    <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_140_810)">
-                        <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
-                        </g>
-                        <defs>
-                        <clipPath id="clip0_140_810">
-                        <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
-                        </clipPath>
-                        </defs>
-                        </svg>
-                    <p class="post-likes">100</p>
-                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
-                        </svg>
-                    <p class="post-comments">100</p>
-                    <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
-                        </svg>                        
-                </div>
-                <div class="review-dotdotdot">
-                    <p class="more-options">•••</p>
-                </div>
-            </div>
-        </div>
+                {% comment %} <div class="review-post-right-div">
+                    <div class="review-post-metrics">
+                        <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_140_810)">
+                            <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_140_810">
+                            <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                        <p class="post-likes">100</p>
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
+                            </svg>
+                        <p class="post-comments">100</p>
+                        <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
+                            </svg>                        
+                    </div>
+                    <div class="review-dotdotdot">
+                        <p class="more-options">•••</p>
+                    </div>
+                </div> {% endcomment %}
+        </a>
+        {% endfor %}
 
 
     </div>
 </div>
 
-
-<div class="landing-offers-div">
+{% comment %} commented out offers for now {% endcomment %}
+{% comment %} <div class="landing-offers-div">
     <div class="landing-offers-text">
         <h2>Offers</h2>
         <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
@@ -667,9 +416,10 @@
         
 
     </div> 
-</div>
+</div> {% endcomment %}
 
-<div class="landing-navigation-div">
+{% comment %} commented out where do you want to go for now {% endcomment %}
+{% comment %} <div class="landing-navigation-div">
     <div class="landing-navigation-text">
         <h2>Where Do You Want To Go?</h2>
         <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
@@ -681,6 +431,7 @@
             </svg>
     </div>
     <div class="landing-navigation-map"></div>
-</div>
+</div> {% endcomment %}
+
 
 {% endblock %}
