@@ -1,15 +1,17 @@
 {% extends "hawkerapp/layout.html" %}
+{% load static %}
 {%block head%}
     <title> {{request.user}} </title>
 {%endblock%}
 {%block body%}
-    <a href="{% url 'logout'%}"> Logout </a>
-    <div> Welcome {{request.user}} </div>
-    <h1>Wholesale App</h1>
+    <div class="landing">
+    <div class="landing-text"> <h1>Welcome {{request.user}}</h1>
     <h2> Stalls </h2>
     <ul>
         {% for stall in stalls %}
             <li><div><a href="{% url 'stallprofilehawker' stall_id=stall.id %}">{{stall.name}}</a></div></li>
         {% endfor %}
     </ul>
+    </div>
+</div>
 {%endblock%}

@@ -1,4 +1,6 @@
 {% extends "hawkerapp/layout.html" %}
+{% load static %}
+
 {% block head %}
     <title>{{stall.name}}</title>
     <style>
@@ -16,6 +18,7 @@
     </style>
 {% endblock %}
 {% block body%}
+<div class="landing">
 <div> <a href="{% url 'logout'%}"> Logout </a> </div>
 <div> <a href="{% url 'index'%}"> Back to Main Page </a> </div>
     <h1> {{stall.name}} @ {{stall.location}}</h1>
@@ -44,4 +47,5 @@
         </tr>
         {% endfor %}
     </table>
+  </div>
 {% endblock %}

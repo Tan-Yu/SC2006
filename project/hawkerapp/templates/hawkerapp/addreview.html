@@ -1,5 +1,6 @@
 {% extends "hawkerapp/layout.html" %}
-{%block head%}
+{%load static%}
+{% comment %}  {%block head%}
     <title> Add Review  </title>
 {%endblock%}
 {%block body%}
@@ -21,4 +22,211 @@
         <input type="file" name="image" accept="image/*">
         <input type="submit">
     </form>
-{%endblock%}
+{%endblock%} {% endcomment %}
+
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+        background-color: #FFFFFF;
+        font-family: Verdana;
+        text-align: center;
+    }
+    
+    form {
+        background-color: #F5765E;
+        max-width: 1050px;
+        margin: auto;
+        padding: 30px 20px;
+        box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 18px
+    }
+
+    .form-control 
+    {
+        text-align: left;
+        margin-bottom: 25px;
+    }
+ 
+        /* Styling form-control Label */
+    .form-control label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .form-control input,
+    .form-control select,
+    .form-control textarea {
+        border: 1px solid #777;
+        border-radius: 20px;
+        padding: 10px;
+        display: block;
+        width: 95%;
+    }
+    
+    .column{
+        float: left;
+        width: 50%;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .rating{
+        /* position: absolute;
+        left: 20%; */
+        /* transform: translate(-50%, -50%) rotateY(180deg); */
+        display: inline-block;
+        border: 0;
+    }
+
+    .rating input{
+        display: none;
+    }
+
+    .rating label{
+        float: right;
+        /* display: block;
+        cursor: pointer;
+        width: 50px; */
+    }
+
+    .rating label:before{
+        display: inline-block;
+        font-size: 1.4rem;
+        content: "\f005";
+        font-family: fontAwesome;
+        margin: 0;
+        padding: 0.3rem .2rem;
+        cursor: pointer;
+        /* text-shadow: 0 0 3px #000; */
+        /* position: relative; */
+    }
+
+    /* .rating label:after{
+        content: "\f005";
+        font-family: fontAwesome;
+        position: absolute;
+        display: block;
+        font-size: 30px;
+        color: #f1f670;
+        top: 0;
+        opacity: 0;
+        transition: .5s;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+
+    } */
+
+    /* Click and hover*/
+    input:checked ~ label, label:hover ~ label{
+        color:#ffb350;
+
+    }
+
+    /*Hover highlight*/
+    input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
+    label:hover ~ input:checked ~ label{
+        color: #cc9000;
+    }
+
+
+    .submit-button {
+        background-color: #ffffff;
+        border: #F5765E;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 14px;
+        color: rgb(251, 145, 145);
+        display: block;
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    
+    .submit-button:hover{
+        color: #ffffff;
+        background: #F5765E;
+    }
+
+
+    .file {
+        opacity: 0;
+        width: 0.1px;
+        height: 0.1px;
+        position: absolute;
+      }
+
+      .file-input label {
+        display: block;
+        position: relative;
+        width: 200px;
+        height: 50px;
+        border-radius: 25px;
+        background: #ffffff;
+        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #F5765E;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform .2s ease-out;
+      }
+
+    label:hover{
+        color: #ffffff;
+        background: #F5765E;
+    }
+
+
+
+</style>
+{% endblock %}
+{%block body%}
+<div class="landing">
+    <div class="landing-text">
+        <h1>Leave Review </h1>
+    </div>
+    <div>
+    <form method = "POST" enctype="multipart/form-data" action="{% url 'addreview' stall_id=stall.id %}" class = "form-control">
+        {% csrf_token %}
+        <div>
+            <div class="row">
+                <div class="column">
+                    <br>
+                    Review:
+                    <textarea name = 'description' class = 'form-control' rows = "11" required></textarea>
+                    <br>
+                </div>
+        
+                <div class="column">
+                    <div class = "rating">
+                        <br>
+                        <br>
+                        <br>
+                        Rating  :
+                        <input type = "radio" name = "rating" id = "star5-1" value = "5" required /><label for="star5-1" title="5"></label>
+                        <input type = "radio" name = "rating" id = "star4-1" value = "4" required /><label for="star4-1" title="4"></label>
+                        <input type = "radio" name = "rating" id = "star3-1" value = "3" required /><label for="star3-1" title="3"></label>
+                        <input type = "radio" name = "rating" id = "star2-1" value = "2" required /><label for="star2-1" title="2"></label>
+                        <input type = "radio" name = "rating" id = "star1-1" value = "1" required /><label for="star1-1" title="1"></label>
+                    </div>
+                    <br>
+
+                    {% comment %} {{ review.image }} {% endcomment %}
+                    <div class="file-input">
+                        <input type="file" name="image"  id="file" accept="image/*" class="file">
+                        <label for="file">Choose a file</label>
+                    </div>
+                    <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+    {%endblock%}
+</div>

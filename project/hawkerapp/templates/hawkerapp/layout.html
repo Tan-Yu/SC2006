@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'hawkerapp/styles.css' %}" />
 
     <title>Document</title>
+    {% block head %}
+    {% endblock %}
 </head>
     <body>
         <!-- -- Header Menu -->
@@ -28,6 +30,7 @@
                 {% if group.name == "hawker" %}
                     <ul class="menu">
                         <li><a href="{% url 'addstall' %}" >Add Stall</a></li>
+                        <li><a href="{% url 'hawkerprofile' %}"> Profile</a><li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     </ul>
                 {% endif %}
