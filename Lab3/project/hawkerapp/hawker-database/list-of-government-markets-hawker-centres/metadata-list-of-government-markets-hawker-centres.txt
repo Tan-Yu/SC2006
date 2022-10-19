@@ -1,0 +1,83 @@
+# Metadata for List of Government Markets Hawker Centres
+---
+Identifier: 'b6083025-58a6-41a4-8066-c51a3282218f'
+Name: 'list-of-government-markets-hawker-centres'
+Title: 'List of Government Markets Hawker Centres'
+Description: 'A list of information on government markets and hawker centres.'
+Topics:
+  - 'Environment'
+Keywords:
+  - 'Food and Beverage'
+  - 'Hawker Centre'
+  - 'NEA'
+Publisher:
+  Name: 'National Environment Agency'
+  Admin 1:
+    Name: 'Woon Jing Shing'
+    Department: 'RSD'
+    Email: 'woon_jing_shing@nea.gov.sg'
+  Admin 2:
+    Name: 'Irene Tan'
+    Department: 'ITD, Application Services Section'
+    Email: 'Irene_Tan@nea.gov.sg'
+Sources:
+  - 'National Environment Agency'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Annual'
+Coverage: '2016-01-01 to 2016-09-01'
+Last Updated: '2017-04-17T12:04:00.081329'
+Resources:
+  -
+    Identifier: '8f6bba57-19fc-4f36-8dcf-c0bda382364d'
+    Title: 'List of Government Markets Hawker Centres'
+    Url: 'https://storage.data.gov.sg/list-of-government-markets-hawker-centres/resources/list-of-government-markets-hawker-centres-2016-12-23T06-40-54Z.csv'
+    Format: 'CSV'
+    Coverage: '2016-01-01 to 2016-09-01'
+    Description: 'Information on a list of government markets and hawker centres,
+      with details on address and number of stalls.'
+    Last Updated: '2016-12-23T06:40:54.334011'
+    Schema:
+      -
+        Name: 'name_of_centre'
+        Title: 'Name of Market or Hawker Centre'
+        Type: 'text'
+        Sub Type: 'general'
+        Description: 'Name of the Government Markets and Hawker Centre'
+      -
+        Name: 'location_of_centre'
+        Title: 'Address'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'type_of_centre'
+        Title: 'Type of centre'
+        Type: 'text'
+        Sub Type: 'general'
+        Description:
+          - '1. MK - Market only'
+          - '2. HC - Hawker Centre only'
+          - '3. MHC- Markets cum Hawker Centres'
+      -
+        Name: 'owner'
+        Title: 'Owner'
+        Type: 'text'
+        Sub Type: 'general'
+        Description: 'Can be owned by HDB - Housing and Development Board, or Government.'
+      -
+        Name: 'no_of_stalls'
+        Title: 'Number of stalls'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'Number of stalls'
+      -
+        Name: 'no_of_cooked_food_stalls'
+        Title: 'Number of cooked food stalls'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'Number of stalls'
+      -
+        Name: 'no_of_mkt_produce_stalls'
+        Title: 'Number of market produce stalls'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'Number of stalls'
