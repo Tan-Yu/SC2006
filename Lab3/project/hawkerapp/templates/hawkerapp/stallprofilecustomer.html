@@ -1,0 +1,53 @@
+{% extends "hawkerapp/layout.html" %}
+{% load static %}
+{% block head %}
+    <title>{{stall.name}}</title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+    </style>
+{% endblock %}
+{% block body%}
+
+<div class="landing">
+  <div class="landing-text">
+    <h1> {{stall.name}}</h1>
+  </div>
+    <h1 style="color:white;"> Menu </h1>
+    <ul>
+        {% for food in menu %}
+        <li style="color:white;"> {{food}}</li>
+        {% endfor %}
+    </ul>
+    <div>
+      <h1 style="color:white;"> Overall Rating:  {{mean_rating}}</h1>
+      <h1 style="color:white;"> Number of Reviews: {{reviews_count}} </h1>
+    </div>
+    <h1 style="color:white;"> Reviews </h1>
+    <table>
+        <tr>
+          <th>User</th>
+          <th>Description</th>
+          <th>Rating</th>
+        </tr>
+        {% for review in reviews %}
+        <tr>
+            <td>{{review.owner}}</td>
+            <td>{{review.description}}</td>
+            <td>{{review.rating}}/5</td>
+        </tr>
+        {% endfor %}
+      </table>
+    <div><a href="{% url 'addreview' stall_id=stall.id %}">Add A Review To This Stall</a></div>
+    <div><a href="http://maps.google.com/?q={{stall.location}}">Find Me!</a></div>
+    </div>
+{% endblock %}

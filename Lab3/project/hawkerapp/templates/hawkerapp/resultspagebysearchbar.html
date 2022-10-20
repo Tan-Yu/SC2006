@@ -1,0 +1,20 @@
+{% extends "hawkerapp/layout.html" %}
+{% load static %}
+{% block body %}
+    <div class="landing">
+        <div class="landing-text">
+        <h1>Results Page</h1>
+        </div>
+        {%if results == None %}
+            No results
+        {%endif%}
+        {% for location in results %}
+            {% for stall in location%}
+                <div><a href="{% url 'stallprofilecustomer' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div>
+            {% endfor%}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+
