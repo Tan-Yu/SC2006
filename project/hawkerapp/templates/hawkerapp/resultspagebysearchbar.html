@@ -34,10 +34,13 @@
     </div>
     
     
-        {%if results == None %}
-                No results
-            {%endif%}
+        
             <div class="stall-cards-div">
+            {%if results == None %}
+            <div class="sp-no-results">
+                <h3>No results.</h3>
+            </div>
+            {%endif%}
             {% for location in results %}
                 {% for stall in location%}
 

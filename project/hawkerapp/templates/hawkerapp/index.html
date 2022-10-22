@@ -9,8 +9,6 @@
     <form action = "{% url 'resultspagebysearchbar' %} " method="post">
         <div class="landing-toggles">
             <div class="toggle-button-div">
-                {% comment %} <button class ="toggle-button">Food</button>
-                <button class ="toggle-button">Hawker</button> {% endcomment %}
                 {% csrf_token %}
                 <select class="toggle-button" name="searchby">
                     <option value="hawkercentre">Hawker Centre</option>
@@ -19,47 +17,12 @@
             </div>
         </div>
         <div class="landing-search-box">
-            <div class="landing-search-text"><input type="text" name="search" placeholder="Search Foods, Hawker Centres" style="outline:none; border-style: none;; background-color:transparent; border-top-style:hidden; border-left-style:none; border-right-style:none; border-bottom-style:none; width:200px;"></div>
+            <div class="landing-search-text"><input type="text" name="search" placeholder="Search Foods, Hawker Centres" style="color:white; outline:none; border-style: none;; background-color:transparent; border-top-style:hidden; border-left-style:none; border-right-style:none; border-bottom-style:none; width:200px;"></div>
             <div class="search-button-div">
-                {% comment %} <button class ="search-button">Search</button>             {% endcomment %}
                 <input type="submit" class="search-button">
             </div>
         </div>
     </form>
-    {% comment %} commented out fileter for now {% endcomment %}
-    {% comment %} <div class="landing-filters-div">
-        <div class="landing-filter">
-            <p>Distance</p>
-            <!-- <object class="drop-arrow" data="jumpstory-download20220904-094235.svg"></object> -->
-            <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
-                <g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;">
-                <g style="fill:#515151;">
-                <path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z"/>
-                </g>
-                </g>
-                </svg>
-        </div>
-        <div class="landing-filter">
-            <p>Rating</p>
-            <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
-                <g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;">
-                <g style="fill:#515151;">
-                <path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z"/>
-                </g>
-                </g>
-                </svg>
-        </div>
-        <div class="landing-filter">
-            <p>Cuisine</p>
-            <svg class="drop-arrow" viewBox="0 0 32 32" preserveAspectRatio="xMaxYMid meet" width="32" height="32">
-                <g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;">
-                <g style="fill:#515151;">
-                <path d="M14.77,23.795L5.185,14.21c-0.879-0.879-0.879-2.317,0-3.195l0.8-0.801c0.877-0.878,2.316-0.878,3.194,0  l7.315,7.315l7.316-7.315c0.878-0.878,2.317-0.878,3.194,0l0.8,0.801c0.879,0.878,0.879,2.316,0,3.195l-9.587,9.585  c-0.471,0.472-1.104,0.682-1.723,0.647C15.875,24.477,15.243,24.267,14.77,23.795z"/>
-                </g>
-                </g>
-                </svg>
-        </div> 
-    </div> {% endcomment %}
     <div class="landing-top-categories-text">
         <h2>Top Categories</h2>
     </div>
