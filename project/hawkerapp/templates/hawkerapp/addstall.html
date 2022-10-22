@@ -3,24 +3,27 @@
     <title> Add Stall </title>
 {%endblock%}
 {%block body%}
-    <div> <a href="{% url 'logout'%}"> Logout </a> </div>
-    <div> <a href="{%url 'hawkerprofile' %}"> Go Back To Profile Page </a> </div>
-    <h1>Add A New Stall Profile</h1>
-    <form enctype="multipart/form-data" action="{% url 'addstall'%}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="stallname" placeholder="Stall Name">
-        <select name="location">
-            {% for loc in location %}
-                <option value="{{ loc.id }}">{{loc.name}}</option>
-            {% endfor %}
-        </select>
-        <select name="food" multiple>
-            {% for f in food %}
-                <option value="{{ f.id }}">{{f.name}}</option>
-            {% endfor %}
-        </select>
-        <input type="file" name="image" accept="image/*">
-        <input type="submit">
-    </form>
+    <div class="add-stall-page">
+        <h1>Add A New Stall Profile</h1>
+        <form enctype="multipart/form-data" action="{% url 'addstall'%}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="stallname" placeholder="Stall Name">
+            <select name="location">
+                {% for loc in location %}
+                    <option value="{{ loc.id }}">{{loc.name}}</option>
+                {% endfor %}
+            </select>
+            <select name="food" multiple>
+                {% for f in food %}
+                    <option value="{{ f.id }}">{{f.name}}</option>
+                {% endfor %}
+            </select>
+            <label for="file-upload" class="custom-file-upload">
+                Upload a Picture!
+            </label>
+            <input type="file" name="image" accept="image/*">
+            <input type="submit">
+        </form>
+    </div>
 {%endblock%}
 

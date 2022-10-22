@@ -11,6 +11,21 @@ body {
 	margin: 0;
 }
 
+body {
+	min-height: 100vh;
+	margin: 0;
+	position: relative;
+	padding-bottom: 2.5rem;
+}
+
+footer{
+	position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;   
+}
+
+
 /* MENU CSS */
 .menu a:link, a:visited {
 	font-family: 'Inter';
@@ -1005,3 +1020,99 @@ width: max-content;}
 	height: 50%;
 } */
 
+/* --Add Stall Page */
+
+.add-stall-page{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height:70vh;
+	/* background-color: aqua; */
+}
+
+.add-stall-page h1{
+	color: #F5765E;
+	margin-bottom: 50px;
+}
+
+.add-stall-page form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	justify-content: center;
+	gap:30px;
+}
+
+.add-stall-page input{
+	max-width: 400px;
+	min-width: 400px;
+	border-radius: 20px;
+	background-color: white;
+	border: 1px solid #F5765E ;
+	padding: 10px 15px 10px 15px;
+	/* margin: 10px; */
+	margin-bottom: 0;
+	font-size: 20px;
+}
+
+.add-stall-page input::placeholder{
+	color: rgba(245, 118, 94, 0.8);
+}
+
+
+
+
+.add-stall-page select{
+	max-width: 400px;
+	font-size: 20px;
+	color: rgba(245, 118, 94, 1);
+	min-width: 100%;
+	border-radius: 20px;
+	background-color: white;
+	border: 1px solid #F5765E ;
+	padding: 10px 15px 10px 15px;
+	/* margin: 10px; */
+	margin-bottom: 0;
+}
+
+.add-stall-page input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 2px solid #F5765E ;
+	font-weight: 600;
+    /* display: inline-block; */
+	padding: 10px 0 10px 0;
+	text-align: center;
+    cursor: pointer;
+	max-width: 400px;
+	font-size: 20px;
+	color: rgba(245, 118, 94,1);
+	min-width: 100%;
+	border-radius: 20px;
+}
+
+.add-stall-page select::-webkit-scrollbar {
+	display: none;
+  }
+
+
+.add-stall-page input[type=submit]{
+	/* display: none; */
+	background-color:#F5765E;
+	color: white;
+	min-width: 100%;
+	border: #F5765E 2px solid;
+
+}
+
+.add-stall-page input[type=submit]:hover{
+	/* display: none; */
+	background-color:#ffffff;
+	color: #F5765E;
+	border: #F5765E 2px solid;
+	min-width: 100%;
+}
