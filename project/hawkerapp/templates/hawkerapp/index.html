@@ -302,57 +302,60 @@
 
     <div class="landing-reviews-scroll">
         {% for review in reviews %}
-            <a class="review-post" href="{%url 'stallprofilecustomer' stall_id=review.stall_id %}" style="text-decoration: none;">
-                <div class="review-profile">
-                    <img class="profile-pic" src={{review.image.url}}>
-                    <div class="user-metrics">
-                        <p class="username">{{review.owner}}</p>
+            <a  href="{%url 'stallprofilecustomer' stall_id=review.stall_id %}" style="text-decoration: none;">
+                <div class="review-post" >
+                    <div class="review-profile">
+                        <img class="profile-pic" src={{review.image.url}}>
+                        <div class="user-metrics">
+                            <p class="username">{{review.owner}}</p>
+                        </div>
                     </div>
+                    <div class="review-info">
+                        <div class="post-hawker-center-name">
+                            <p class="superscript">Hawker Center</p>
+                            <p class="main-entry">{{review.stall.location.name}}</p>
+                        </div>
+                        <div class="post-stall-name">
+                            <p class="superscript">Stall</p>
+                            <p class="main-entry">{{review.stall.name}}</p>
+                        </div>
+                    </div>
+                    <div class="review-description">
+                        <div class="post-description">
+                            <span class="rating__stars" style="--rating: {{review.rating}};"></span>
+                            <div class="rating__number">
+                        </div>
+                        <p class="main-entry">{{review.description}}</p>
+                        </div>
+                    </div>
+                    {% comment %} <div class="review-post-right-div">
+                        <div class="review-post-metrics">
+                            <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_140_810)">
+                                <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_140_810">
+                                <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
+                                </clipPath>
+                                </defs>
+                                </svg>
+                            <p class="post-likes">100</p>
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
+                                </svg>
+                            <p class="post-comments">100</p>
+                            <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
+                                </svg>                        
+                        </div>
+                        <div class="review-dotdotdot">
+                            <p class="more-options">•••</p>
+                        </div>
+                    </div> {% endcomment %}
                 </div>
-                <div class="review-info">
-                    <div class="post-hawker-center-name">
-                        <p class="superscript">Hawker Center</p>
-                        <p class="main-entry">{{review.stall.location.name}}</p>
-                    </div>
-                    <div class="post-stall-name">
-                        <p class="superscript">Stall</p>
-                        <p class="main-entry">{{review.stall.name}}</p>
-                    </div>
-                </div>
-                <div class="review-description">
-                    <div class="post-description">
-                        <span class="rating__stars" style="--rating: {{review.rating}};"></span>
-                        <div class="rating__number">
-                    </div>
-                    <p class="main-entry">{{review.description}}</p>
-                    </div>
-                </div>
-                {% comment %} <div class="review-post-right-div">
-                    <div class="review-post-metrics">
-                        <svg width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_140_810)">
-                            <path d="M22.6771 1.18942C19.3648 -0.532443 15.0326 1.08715 13.5 4.80011C11.9674 1.08715 7.63522 -0.53453 4.32292 1.18942C0.795135 3.02816 -0.891664 7.72414 1.8949 13.2633C3.87336 17.2059 7.38071 20.1758 13.5 25.5C19.6193 20.1758 23.1266 17.2038 25.1051 13.2633C27.8917 7.72414 26.2049 3.02816 22.6771 1.18942Z" fill="#F58F7C"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_140_810">
-                            <rect width="27" height="25" fill="white" transform="translate(0 0.5)"/>
-                            </clipPath>
-                            </defs>
-                            </svg>
-                        <p class="post-likes">100</p>
-                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.2945 21.6861L4.66668 24.5L5.42878 19.1653C3.50735 17.5015 2.33334 15.2771 2.33334 12.8333C2.33334 7.67868 7.55669 3.5 14 3.5C20.4433 3.5 25.6667 7.67868 25.6667 12.8333C25.6667 17.988 20.4433 22.1667 14 22.1667C12.7047 22.1667 11.4587 21.9978 10.2945 21.6861Z" stroke="#F58F7C" stroke-width="2" stroke-linecap="square"/>
-                            </svg>
-                        <p class="post-comments">100</p>
-                        <svg width="28" height="29" viewBox="0 0 28 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M22.0582 8.01333L13.1273 16.9442C13.3922 17.3233 13.6173 17.7328 13.7982 18.1668L16.0265 23.5323L22.0582 8.01217V8.01333ZM11.5558 15.3727L20.4878 6.44067L4.96766 12.4723L10.3332 14.7018C10.7638 14.8804 11.1738 15.1054 11.5558 15.3727ZM25.1102 6.20033L18.0787 24.2907C17.6353 25.434 16.3555 26.0208 15.2215 25.602C14.9453 25.4999 14.6931 25.3418 14.4809 25.1376C14.2687 24.9334 14.101 24.6876 13.9883 24.4155L11.76 19.05C11.3264 18.0044 10.4956 17.1736 9.44999 16.74L4.08333 14.5117C2.97033 14.0485 2.46166 12.7617 2.94933 11.6347C3.0689 11.3593 3.2418 11.1103 3.45805 10.9021C3.6743 10.6938 3.92963 10.5304 4.20933 10.4213L22.2997 3.3875C22.6927 3.22909 23.1237 3.18978 23.539 3.27446C23.9542 3.35914 24.3354 3.56407 24.6351 3.86374C24.9348 4.16341 25.1397 4.54459 25.2244 4.95985C25.309 5.3751 25.2697 5.80609 25.1113 6.19917L25.1102 6.20033Z" fill="#F58F7C"/>
-                            </svg>                        
-                    </div>
-                    <div class="review-dotdotdot">
-                        <p class="more-options">•••</p>
-                    </div>
-                </div> {% endcomment %}
-        </a>
+            </a>
+
         {% endfor %}
 
 
