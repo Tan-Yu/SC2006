@@ -6,7 +6,7 @@
     <div> <a href="{% url 'logout'%}"> Logout </a> </div>
     <div> <a href="{%url 'hawkerprofile' %}"> Go Back To Profile Page </a> </div>
     <h1>Add A New Stall Profile</h1>
-    <form action="{% url 'addstall'%}" method="post">
+    <form enctype="multipart/form-data" action="{% url 'addstall'%}" method="POST">
         {% csrf_token %}
         <input type="text" name="stallname" placeholder="Stall Name">
         <select name="location">
@@ -19,7 +19,8 @@
                 <option value="{{ f.id }}">{{f.name}}</option>
             {% endfor %}
         </select>
-        <input type="file" name="photo" accept="image/*" placeholder="Upload A Picture Of Your Stall">
+        <input type="file" name="image" accept="image/*">
         <input type="submit">
     </form>
 {%endblock%}
+

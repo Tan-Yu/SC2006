@@ -1,5 +1,7 @@
 {% extends "hawkerapp/layout.html" %}
 {% load static %}
+{% comment %} {% extends "hawkerapp/layout.html" %}
+{% load static %}
 {% block head %}
     <title>{{stall.name}}</title>
     <style>
@@ -50,4 +52,122 @@
     <div><a href="{% url 'addreview' stall_id=stall.id %}">Add A Review To This Stall</a></div>
     <div><a href="http://maps.google.com/?q={{stall.location}}">Find Me!</a></div>
     </div>
+{% endblock %} {% endcomment %}
+
+{% block head %}
+    <head>
+        <title>Stall's Name</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'hawkerapp/stylestallprofile.css' %}">
+    </head>
 {% endblock %}
+{% block body %}
+        <div class="cols__container">
+            <div class="left__col">
+                <div class="img__container">
+                    <img src={{stall.image.url}} alt="Stall's Image">
+                </div>
+                <h2>Stall Name</h2>
+
+                <ul class = "about">
+                    <li><span>{{mean_rating}}</span>Average Rating</li>
+                    <li><span>{{stall.reviews.count}}</span>Total Reviews</li>
+                </ul>
+
+                <div class="content">
+                    <a href="http://maps.google.com/?q={{stall.location}}" class="btn">Find Me</a>
+                    <a href="{% url 'addreview' stall_id=stall.id %}" class="btn">Leave Your Review</a>
+                </div>
+            </div>
+
+            <div class="right__col">
+                <div class="dishes">
+                    <h1 class="heading">Our Menu</h1>
+
+                    <div class="box__container">
+
+                        <div class="box">
+                            <div class="image">
+                                <img src = "img/beehoon.png" alt = "food">
+                            </div>
+                            <h3>Food Name</h3>
+                            <span>$$$</span>
+                        </div>
+
+                        <div class="box">
+                            <div class="image">
+                                <img src = "img/minced-pork.jpg" alt = "food">
+                            </div>
+                            <h3>Food Name</h3>
+                            <span>$$$</span>
+                        </div>
+
+                        <div class="box">
+                            <div class="image">
+                                <img src = "img/beehoon.png" alt = "food">
+                            </div>
+                            <h3>Food Name</h3>
+                            <span>$$$</span>
+                        </div>
+                        <div class="box">
+                          <div class="image">
+                              <img src = "img/minced-pork.jpg" alt = "food">
+                          </div>
+                          <h3>Food Name</h3>
+                          <span>$$$</span>
+                      </div>
+
+                      <div class="box">
+                          <div class="image">
+                              <img src = "img/beehoon.png" alt = "food">
+                          </div>
+                          <h3>Food Name</h3>
+                          <span>$$$</span>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <h3 class="sub-heading"> Customer's Review<h3>
+                    <h1 class="heading">what they say</h1>
+
+                    <div class="review-box-container">
+                        {% for review in stall.reviews.all %}
+                        <div class="review-box">
+                            <div class="box-top">
+                                <div class="profile">
+                                    <div class="profile-img">
+                                        <img src = {{review.image.url}}>
+                                    </div>
+
+                                    <div class="username">
+                                        <strong>{{review.owner}}</strong>
+                                        {% comment %} <span>@elizebth123</span> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="reviews">
+                                  {% for r in range %}
+                                    {% if r < review.rating%}
+                                      <i class="fas fa-star"></i>
+                                    {% else%}
+                                      <i class="far fa-star"></i>
+                                    {% endif %}
+                                  {% endfor %}
+                                </div> 
+                            </div>
+
+                            <div class="user-comment">
+                                <p>{{review.description}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
