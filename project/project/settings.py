@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "mathfilters",
     "hawkerapp",
     "django.contrib.admin",
     "django.contrib.auth",
