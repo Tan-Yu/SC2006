@@ -24,8 +24,7 @@ class Stall(models.Model):
     rating = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)])
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     menus = models.ManyToManyField(Menu, related_name="stalls")
-    def __str__(self):
-        return f"Owner: {self.owner} Name: {self.name} Location: {self.location} Menu: {self.foods.all()}"
+
     
 class Review(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="images/")
