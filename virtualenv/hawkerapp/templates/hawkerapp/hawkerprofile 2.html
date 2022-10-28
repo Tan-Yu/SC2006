@@ -1,0 +1,16 @@
+{% extends "hawkerapp/layout.html" %}
+{%block head%}
+    <title> {{request.user}} </title>
+{%endblock%}
+{%block body%}
+    <a href="{% url 'hawkerapp:logout'%}"> Logout </a>
+    <div> Welcome {{request.user}} </div>
+    <h1>Wholesale App</h1>
+    <div> <a href="{%url 'hawkerapp:addstall' %}"> Add A New Stall Page </a> </div>
+    <h2> Stalls </h2>
+    <ul>
+        {% for stall in stalls %}
+            <li><div><a href="{% url 'hawkerapp:stallprofilehawker' stall_id=stall.id %}">{{stall.location}} {{stall.name}}</a></div></li>
+        {% endfor %}
+    </ul>
+{%endblock%}

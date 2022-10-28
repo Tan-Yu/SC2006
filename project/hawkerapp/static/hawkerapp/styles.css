@@ -148,6 +148,12 @@ footer{
 }
 
 
+.toggle-button-div select {
+	/* for Firefox */
+	-moz-appearance: none;
+	/* for Safari, Chrome, Opera */
+	-webkit-appearance: none;
+  }
 
 
 .toggle-button{
@@ -159,6 +165,11 @@ footer{
 	border-radius: 20px;
 	border: 0px;
 	font-weight: 600;
+}
+
+.toggle-button select{
+	appearance: none;
+
 }
 
 .toggle-button:hover{

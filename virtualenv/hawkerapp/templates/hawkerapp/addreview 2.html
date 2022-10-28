@@ -1,0 +1,21 @@
+{% extends "hawkerapp/layout.html" %}
+{%block head%}
+    <title> Add Review  </title>
+{%endblock%}
+{%block body%}
+    <h1>Add A New Review for {{stall.name}} </h1>
+    <form action="{% url 'hawkerapp:addreview' stall_id=stall.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="description" placeholder="Description">
+        <select name="rating">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <input type="submit">
+    </form>
+    <div> <a href="{%url 'hawkerapp:stallprofilecustomer' stall_id=stall.id %}"> Go Back To Stall Profile Page </a> </div>
+{%endblock%}
