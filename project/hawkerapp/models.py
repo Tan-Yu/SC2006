@@ -5,10 +5,10 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 
 
-class Food(models.Model):
+
+class Menu(models.Model):
     name = models.CharField(max_length=128)
-    def __str__(self):
-        return f"{self.name}"
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
 
 class Location(models.Model):
     name = models.CharField(max_length=128)
@@ -21,11 +21,10 @@ class Stall(models.Model):
     owner = models.CharField(max_length=128)
     name=models.CharField(max_length=128)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="stalls")
-    foods = models.ManyToManyField(Food,related_name="stalls")
     rating = models.PositiveIntegerField(default=5, validators=[MinValueValidator(0), MaxValueValidator(5)])
     image = models.ImageField(null=True, blank=True, upload_to="images/")
-    def __str__(self):
-        return f"Owner: {self.owner} Name: {self.name} Location: {self.location} Menu: {self.foods.all()}"
+    menus = models.ManyToManyField(Menu, related_name="stalls")
+
     
 class Review(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="images/")

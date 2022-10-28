@@ -3,6 +3,8 @@
     <title> Add Stall </title>
 {%endblock%}
 {%block body%}
+    <br>
+    <br>
     <div class="add-stall-page">
         <h1>Add A New Stall Profile</h1>
         <form enctype="multipart/form-data" action="{% url 'addstall'%}" method="POST">
@@ -13,17 +15,11 @@
                     <option value="{{ loc.id }}">{{loc.name}}</option>
                 {% endfor %}
             </select>
-            <select name="food" multiple>
-                {% for f in food %}
-                    <option value="{{ f.id }}">{{f.name}}</option>
-                {% endfor %}
-            </select>
-            <label for="file-upload" class="custom-file-upload">
-                Upload a Picture!
-            </label>
-            <input type="file" name="image" accept="image/*">
+            <label for="file" class="custom-file-upload">
+                Upload a Picture of Stall!
+            </label> 
+            <input type="file" id="file" name="image" accept="image/*">
             <input type="submit">
         </form>
     </div>
 {%endblock%}
-

@@ -11,6 +11,7 @@ urlpatterns = [
     path("hawkerprofile/", views.hawkerprofile, name="hawkerprofile"),
     path("customerprofile/", views.customerprofile, name="customerprofile"),
     path("addstall/", views.addstall, name="addstall"),
+    path("addmenu/<int:stall_id>", views.addmenu, name="addmenu"),
     path("addreview/<int:stall_id>", views.addreview, name="addreview"),
     path("resultspagebysearchbar/", views.resultspagebysearchbar, name="resultspagebysearchbar"),
     path("location/<str:location_name>", views.location, name="location")
