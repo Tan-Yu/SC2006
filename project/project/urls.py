@@ -16,8 +16,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 
 urlpatterns = [
+    path('', lambda req: redirect("/hawkerapp/")),
     path("admin/", admin.site.urls),
     path("hawkerapp/", include("hawkerapp.urls"))
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
