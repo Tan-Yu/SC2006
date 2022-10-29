@@ -9,6 +9,15 @@
 <style>
    
     
+    /* .add_review{
+	  align-items: center;  
+    } */
+
+    .add_review h1{
+	    color: #F5765E;
+	    margin-bottom: 20px;
+    }
+
     form {
         background-color: #FFFFFF;
         border: #F5765E 2px solid;
@@ -20,7 +29,7 @@
 
     .form-control 
     {
-        text-align: left;
+        text-align: center;
         margin-bottom: 25px;
         padding: 40px;
     }
@@ -38,18 +47,24 @@
         border-radius: 20px;
         padding: 10px;
         display: block;
-        width: 95%;
+        width: 95%; */
+        max-width: 400px;
+	    min-width: 400px;
+	    border-radius: 20px;
+	    background-color: white;
+	    border: 1px solid #F5765E ;
+	    padding: 10px 15px 10px 15px;
+	    font-size: 20px;
     }
     
-    .column{
-        float: left;
-        width: 50%;
+    .form-control input::placeholder,
+    .form-control textarea::placeholder{
+	    color: rgba(245, 118, 94, 0.8);
+        text-align: left;
     }
 
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
+    .form-control textarea:focus{
+        border: 1px solid #F5765E ;
     }
 
     .rating{
@@ -58,6 +73,8 @@
         /* transform: translate(-50%, -50%) rotateY(180deg); */
         display: inline-block;
         border: 0;
+        color: #F5765E;
+        font-size: 20px;
     }
 
     .rating input{
@@ -99,19 +116,19 @@
 
     /* Click and hover*/
     input:checked ~ label, label:hover ~ label{
-        color:#ffb350;
+        color:#f1e325;
 
     }
 
     /*Hover highlight*/
     input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
     label:hover ~ input:checked ~ label{
-        color: #cc9000;
+        color: #f1e325;
     }
 
 
     .submit-button {
-        background-color: #ffffff;
+        /* background-color: #ffffff;
         border: #F5765E;
         border-radius: 10px;
         font-family: inherit;
@@ -120,12 +137,22 @@
         display: block;
         width: 100%;
         margin-top: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 20px; */
+        background-color:#F5765E;
+	    color: white;
+	    min-width: 100%;
+	    border: #F5765E 2px solid;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 0 10px 0;
     }
     
     .submit-button:hover{
-        color: #ffffff;
-        background: #F5765E;
+        background-color:#ffffff;
+	    color: #F5765E;
+	    border: #F5765E 2px solid;
+	    min-width: 100%;
     }
 
 
@@ -136,8 +163,8 @@
         position: absolute;
       }
 
-      .file-input label {
-        display: block;
+    .file-input label {
+        /* display: block;
         position: relative;
         width: 200px;
         height: 50px;
@@ -201,6 +228,16 @@
                     <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
                 </div>
             </div>
+            <br>
+            <br>
+
+            {% comment %} {{ review.image }} {% endcomment %}
+            <div class="file-input">
+                <input type="file" name="image"  id="file" accept="image/*" class="file">
+                <label for="file">Upload an Image!</label>
+            </div>
+            <br>
+            <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
         </div>
     </form>
 </div>

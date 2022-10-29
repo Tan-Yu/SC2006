@@ -10,7 +10,8 @@ html{
     color: grey;
     margin: 2rem;
     margin-left: 170px; 
-    font-size: 3rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
 }
 
 .stall_container{
