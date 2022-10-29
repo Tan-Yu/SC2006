@@ -1,52 +1,28 @@
 {% extends "hawkerapp/layout.html" %}
 {%load static%}
-{% comment %}  {%block head%}
-    <title> Add Review  </title>
-{%endblock%}
-{%block body%}
-    <div> <a href="{%url 'stallprofilecustomer' stall_id=stall.id %}"> Go Back To Stall Profile Page </a> </div>
-    <div> <a href="{% url 'customerprofile' %}"> Go To Your Profile Page </a> </div>
-    <div> <a href="{% url 'logout'%}"> Logout </a> </div>
-    <h1>Add A New Review for {{stall.name}} </h1>
-    <form action="{% url 'addreview' stall_id=stall.id %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="description" placeholder="Description">
-        <select name="rating">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input type="file" name="image" accept="image/*">
-        <input type="submit">
-    </form>
-{%endblock%} {% endcomment %}
+
 
 
 {% block head %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'hawkerapp/styles.css' %}" />
 <style>
-    body {
-        background-color: #FFFFFF;
-        font-family: Verdana;
-        text-align: center;
-    }
+   
     
     form {
-        background-color: #F5765E;
+        background-color: #FFFFFF;
+        border: #F5765E 2px solid;
         max-width: 1050px;
         margin: auto;
         padding: 30px 20px;
-        box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
-        border-radius: 18px
+        border-radius: 20px;
     }
 
     .form-control 
     {
         text-align: left;
         margin-bottom: 25px;
+        padding: 40px;
     }
  
         /* Styling form-control Label */
@@ -58,7 +34,7 @@
     .form-control input,
     .form-control select,
     .form-control textarea {
-        border: 1px solid #777;
+        border: 2px solid #F5765E;
         border-radius: 20px;
         padding: 10px;
         display: block;
@@ -166,15 +142,14 @@
         width: 200px;
         height: 50px;
         border-radius: 25px;
-        background: #ffffff;
-        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.4);
+        /* background: #e7e4e4; */
         display: flex;
         align-items: center;
         justify-content: center;
         color: #F5765E;
         font-weight: bold;
         cursor: pointer;
-        transition: transform .2s ease-out;
+        border: #F5765E 2px solid;
       }
 
     label:hover{
@@ -187,46 +162,47 @@
 </style>
 {% endblock %}
 {%block body%}
-<div class="landing">
-    <div class="landing-text">
+
+<div class="content-wrapper add-review-page">
+    <div class="add-review-text">
         <h1>Leave Review </h1>
     </div>
     <div>
     <form method = "POST" enctype="multipart/form-data" action="{% url 'addreview' stall_id=stall.id %}" class = "form-control">
         {% csrf_token %}
-        <div>
+
             <div class="row">
-                <div class="column">
-                    <br>
-                    Review:
+                <div class="column left">
+
+                    <p>Review:</p>
                     <textarea name = 'description' class = 'form-control' rows = "11" required></textarea>
-                    <br>
+
                 </div>
         
-                <div class="column">
+                <div class="column right">
                     <div class = "rating">
-                        <br>
-                        <br>
-                        <br>
-                        Rating  :
+                        <p>Rating  :</p>
+                        <div class="stars">
                         <input type = "radio" name = "rating" id = "star5-1" value = "5" required /><label for="star5-1" title="5"></label>
                         <input type = "radio" name = "rating" id = "star4-1" value = "4" required /><label for="star4-1" title="4"></label>
                         <input type = "radio" name = "rating" id = "star3-1" value = "3" required /><label for="star3-1" title="3"></label>
                         <input type = "radio" name = "rating" id = "star2-1" value = "2" required /><label for="star2-1" title="2"></label>
                         <input type = "radio" name = "rating" id = "star1-1" value = "1" required /><label for="star1-1" title="1"></label>
-                    </div>
-                    <br>
+                        </div>
+                    </div>  
+
 
                     {% comment %} {{ review.image }} {% endcomment %}
                     <div class="file-input">
                         <input type="file" name="image"  id="file" accept="image/*" class="file">
                         <label for="file">Choose a file</label>
                     </div>
+
                     <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
+
     {%endblock%}
-</div>

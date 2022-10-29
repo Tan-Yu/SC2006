@@ -421,12 +421,11 @@ footer{
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	border-radius: 25px;
 	flex-direction: row;
-	display: flex;
+	display: none;
 	align-items: center;
 	justify-content: space-between;
 	width: 95%;
 	padding: 10px;
-	display:block;
 }
 
 body > div.landing-reviews-div > div.landing-reviews-scroll > a > div{
@@ -1128,4 +1127,73 @@ width: max-content;}
 	color: #F5765E;
 	border: #F5765E 2px solid;
 	min-width: 100%;
+}
+
+.content-wrapper{
+	padding-left: 15%;
+	padding-right: 15%;
+}
+
+/* -Add Review Page */
+.add-review-text h1{
+	margin-top:100px;
+	color: #F5765E;
+	font-family: "Inter";
+	font-size: 60px;
+}
+
+.add-review-page .column{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.add-review-page .row{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	color: #F5765E;
+	align-items: center;
+
+}
+
+.add-review-page .left p{
+	font-size: 30px;
+	padding: 0;
+	margin: 0 0 10px 0;
+	font-weight:600;
+}
+
+.add-review-page .right .rating{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.add-review-page .right p{
+	margin:0;
+	margin-bottom: 13px;
+	font-size: 30px;
+	font-weight:600;
+}
+
+.add-review-page .right button{
+	width: 200px;
+	height: 50px;
+	border-radius: 25px;
+	/* background: #e7e4e4; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #F5765E;
+	font-weight: bold;
+	cursor: pointer;
+	border: #F5765E 2px solid;
+	margin: 0;
+}
+
+.add-review-page .right button:hover{
+	color: #ffffff;
+	background: #F5765E;
 }
