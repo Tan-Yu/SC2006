@@ -34,18 +34,26 @@
         text-align: center;
     }
     
+    /* .add_review{
+	  align-items: center;  
+    } */
+
+    .add_review h1{
+	    color: #F5765E;
+	    margin-bottom: 20px;
+    }
+
     form {
-        background-color: #F5765E;
+        background-color: #ffffff;
         max-width: 1050px;
         margin: auto;
         padding: 30px 20px;
-        box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
-        border-radius: 18px
+        
     }
 
     .form-control 
     {
-        text-align: left;
+        text-align: center;
         margin-bottom: 25px;
     }
  
@@ -58,22 +66,28 @@
     .form-control input,
     .form-control select,
     .form-control textarea {
-        border: 1px solid #777;
+        /* border: 1px solid #777;
         border-radius: 20px;
         padding: 10px;
         display: block;
-        width: 95%;
+        width: 95%; */
+        max-width: 400px;
+	    min-width: 400px;
+	    border-radius: 20px;
+	    background-color: white;
+	    border: 1px solid #F5765E ;
+	    padding: 10px 15px 10px 15px;
+	    font-size: 20px;
     }
     
-    .column{
-        float: left;
-        width: 50%;
+    .form-control input::placeholder,
+    .form-control textarea::placeholder{
+	    color: rgba(245, 118, 94, 0.8);
+        text-align: left;
     }
 
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
+    .form-control textarea:focus{
+        border: 1px solid #F5765E ;
     }
 
     .rating{
@@ -82,6 +96,8 @@
         /* transform: translate(-50%, -50%) rotateY(180deg); */
         display: inline-block;
         border: 0;
+        color: #F5765E;
+        font-size: 20px;
     }
 
     .rating input{
@@ -123,19 +139,19 @@
 
     /* Click and hover*/
     input:checked ~ label, label:hover ~ label{
-        color:#ffb350;
+        color:#f1e325;
 
     }
 
     /*Hover highlight*/
     input:checked + label:hover, input:checked ~ label:hover, input:checked ~ label:hover ~ label,
     label:hover ~ input:checked ~ label{
-        color: #cc9000;
+        color: #f1e325;
     }
 
 
     .submit-button {
-        background-color: #ffffff;
+        /* background-color: #ffffff;
         border: #F5765E;
         border-radius: 10px;
         font-family: inherit;
@@ -144,12 +160,22 @@
         display: block;
         width: 100%;
         margin-top: 50px;
-        margin-bottom: 20px;
+        margin-bottom: 20px; */
+        background-color:#F5765E;
+	    color: white;
+	    min-width: 100%;
+	    border: #F5765E 2px solid;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 0 10px 0;
     }
     
     .submit-button:hover{
-        color: #ffffff;
-        background: #F5765E;
+        background-color:#ffffff;
+	    color: #F5765E;
+	    border: #F5765E 2px solid;
+	    min-width: 100%;
     }
 
 
@@ -160,8 +186,8 @@
         position: absolute;
       }
 
-      .file-input label {
-        display: block;
+    .file-input label {
+        /* display: block;
         position: relative;
         width: 200px;
         height: 50px;
@@ -174,7 +200,18 @@
         color: #F5765E;
         font-weight: bold;
         cursor: pointer;
-        transition: transform .2s ease-out;
+        transition: transform .2s ease-out; */
+        border: 2px solid #F5765E ;
+	    font-weight: 600;
+        /* display: inline-block; */
+	    padding: 10px 0 10px 0;
+	    text-align: center;
+        cursor: pointer;
+	    max-width: 100px;
+	    font-size: 16px;
+	    color: rgba(245, 118, 94,1);
+	    min-width: 100%;
+	    border-radius: 20px;
       }
 
     label:hover{
@@ -187,46 +224,35 @@
 </style>
 {% endblock %}
 {%block body%}
-<div class="landing">
-    <div class="landing-text">
-        <h1>Leave Review </h1>
-    </div>
-    <div>
+<br>
+<br>
+<div class = "add_review">
+    <h1>Leave Review </h1>
     <form method = "POST" enctype="multipart/form-data" action="{% url 'addreview' stall_id=stall.id %}" class = "form-control">
         {% csrf_token %}
         <div>
-            <div class="row">
-                <div class="column">
-                    <br>
-                    Review:
-                    <textarea name = 'description' class = 'form-control' rows = "11" required></textarea>
-                    <br>
-                </div>
-        
-                <div class="column">
-                    <div class = "rating">
-                        <br>
-                        <br>
-                        <br>
-                        Rating  :
-                        <input type = "radio" name = "rating" id = "star5-1" value = "5" required /><label for="star5-1" title="5"></label>
-                        <input type = "radio" name = "rating" id = "star4-1" value = "4" required /><label for="star4-1" title="4"></label>
-                        <input type = "radio" name = "rating" id = "star3-1" value = "3" required /><label for="star3-1" title="3"></label>
-                        <input type = "radio" name = "rating" id = "star2-1" value = "2" required /><label for="star2-1" title="2"></label>
-                        <input type = "radio" name = "rating" id = "star1-1" value = "1" required /><label for="star1-1" title="1"></label>
-                    </div>
-                    <br>
-
-                    {% comment %} {{ review.image }} {% endcomment %}
-                    <div class="file-input">
-                        <input type="file" name="image"  id="file" accept="image/*" class="file">
-                        <label for="file">Choose a file</label>
-                    </div>
-                    <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
-                </div>
+            <textarea name = 'description' class = 'form-control' placeholder="Description" rows = "11" required></textarea>
+            <br>
+            <div class = "rating">
+                Rating  :
+                <input type = "radio" name = "rating" id = "star5-1" value = "5" required /><label for="star5-1" title="5"></label>
+                <input type = "radio" name = "rating" id = "star4-1" value = "4" required /><label for="star4-1" title="4"></label>
+                <input type = "radio" name = "rating" id = "star3-1" value = "3" required /><label for="star3-1" title="3"></label>
+                <input type = "radio" name = "rating" id = "star2-1" value = "2" required /><label for="star2-1" title="2"></label>
+                <input type = "radio" name = "rating" id = "star1-1" value = "1" required /><label for="star1-1" title="1"></label>
             </div>
+            <br>
+            <br>
+
+            {% comment %} {{ review.image }} {% endcomment %}
+            <div class="file-input">
+                <input type="file" name="image"  id="file" accept="image/*" class="file">
+                <label for="file">Upload an Image!</label>
+            </div>
+            <br>
+            <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
         </div>
     </form>
 </div>
-    {%endblock%}
+{%endblock%}
 </div>

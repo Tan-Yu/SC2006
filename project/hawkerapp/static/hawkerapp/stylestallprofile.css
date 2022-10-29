@@ -179,7 +179,7 @@ body{
 .cols__container .right__col .box__container .box .image img{
     padding: 10px;
     width: 80%;
-    height: auto;
+    height: 200px;
     border-radius: 25px;
     object-fit: cover;
 }
@@ -188,7 +188,7 @@ body{
 
 .cols__container .right__col .box__container .box h3{
     color: black;
-    font-size: 1.8rem;
+    font-size: 16px;
 }
 
 .cols__container .right__col .box__container .box span{
@@ -263,7 +263,7 @@ body{
 }
 
 .reviews{
-    color: yellow
+    color: rgb(247, 247, 33)
 }
 
 .box-top{
@@ -295,7 +295,7 @@ body{
 .review .heading{
     text-align: center;
     color:black;
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding-bottom: 1rem;
     text-transform: uppercase;
 }
