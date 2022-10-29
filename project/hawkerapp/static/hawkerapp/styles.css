@@ -294,9 +294,18 @@ footer{
 	margin:0;
 	padding-right: 8px;
 	padding-left: 8px;
+	text-decoration:none;
 
-	
 }
+.langing-categories-icon a p{
+	text-decoration:none;
+}
+	
+.langing-categories-icon a:visited{
+	text-decoration:none;
+}
+	
+
 .langing-categories-icon {
 	display: flex;
 	align-items: center;

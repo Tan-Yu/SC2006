@@ -16,5 +16,13 @@ urlpatterns = [
     path("resultspagebysearchbar/", views.resultspagebysearchbar, name="resultspagebysearchbar"),
     path("location/<str:location_name>", views.location, name="location"),
     path("map/", views.map, name="map"),
+    path("bbq/", views.bbq, name="bbq"),
+    path("seafood/", views.seafood, name="seafood"),
+    path("malay/", views.malay, name="malay"),
+    path("indian/", views.indian, name="indian"),
+    path("chinese/", views.chinese, name="chinese"),
+    path("western/", views.western, name="western"),
+    path("desserts/", views.desserts, name="desserts"),
+    path("drinks/", views.drinks, name="drinks"),
 ]
 

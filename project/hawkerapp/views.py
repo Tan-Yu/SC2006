@@ -1,5 +1,6 @@
 from collections import UserString
 from http.client import HTTPResponse
+from unicodedata import name
 # from socket import fromshare
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
@@ -14,6 +15,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users, customer_only, hawker_only
+
 
 
 class CreateUserForm(UserCreationForm):
@@ -244,3 +246,37 @@ def location(request,location_name):
 
 def map(request):
     return render(request, "hawkerapp/map.html")
+
+
+def bbq(request):
+    stalls = Stall.objects.filter(name__contains='Duck')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def seafood(request):
+    stalls = Stall.objects.filter(name__contains='seafood')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def malay(request):
+    stalls = Stall.objects.filter(name__contains='malay')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def indian(request):
+    stalls = Stall.objects.filter(name__contains='indian')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def chinese(request):
+    stalls = Stall.objects.filter(name__contains='chinese')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def western(request):
+    stalls = Stall.objects.filter(name__contains='western')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def desserts(request):
+    stalls = Stall.objects.filter(name__contains='desserts')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
+def drinks(request):
+    stalls = Stall.objects.filter(name__contains='drinks')
+    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+
