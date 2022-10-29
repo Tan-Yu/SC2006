@@ -1,0 +1,79 @@
+@import url(https://rsms.me/inter/inter.css);
+
+html{
+    font-family: 'Inter';
+    font-size: 16px;
+    background-color: rgb(255, 254, 254);
+}
+
+.h2{
+    color: grey;
+    margin: 2rem;
+    margin-left: 170px; 
+    font-size: 3rem;
+}
+
+.stall_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.stall_box{
+    width: 70%;
+    box-shadow: 2px 2px 30px black;
+    background-color: white;
+    padding: 20px;
+    margin: 15px;
+    cursor: pointer;
+    border-radius: 1rem;
+    display:block
+}
+
+.stall_box:hover{
+    transform: translateY(-10px);
+    transition: all ease 0.3s;
+}
+
+
+.stall_container .stall_box .row{
+    display: flex;
+    align-items: center;
+}
+
+.stall_container .stall_box .stall_image{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 10px;
+    
+}
+
+.stall_container .stall_box .stall_image img{
+    width:100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.stall_container .stall_box .about{
+    justify-content: space-between;
+    position: relative;
+    margin: 1rem;
+}
+
+.stall_container .stall_box li{
+    display: flex;
+    flex-direction: row;
+    color: rgb(14, 14, 14);
+    font-size: 1.2rem;
+    margin: 1.1rem 0;
+}
+
+.stall_container .stall_box li span{
+    color:rgb(165, 165, 165);
+    padding-left: 15px;
+}
