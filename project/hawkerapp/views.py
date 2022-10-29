@@ -1,5 +1,6 @@
 from collections import UserString
-from socket import fromshare
+from http.client import HTTPResponse
+# from socket import fromshare
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -119,10 +120,7 @@ def customerprofile(request):
     average_rating = 0
     for review in reviews:
         average_rating += review.rating
-    if average_rating == 0:
-        pass
-    else:
-        average_rating = average_rating/num_reviews
+    average_rating = average_rating/num_reviews
 
     return render(request, "hawkerapp/customerprofile.html", {"reviews":reviews, "range":range(5), "num_reviews":num_reviews, "average_rating":average_rating})
 
@@ -243,3 +241,6 @@ def resultspagebysearchbar(request):
 def location(request,location_name):
     location = Location.objects.get(name=location_name)
     return render(request, "hawkerapp/location.html", {"location":location})
+
+def map(request):
+    return render(request, "hawkerapp/map.html")
