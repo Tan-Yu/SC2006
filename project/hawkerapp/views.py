@@ -122,7 +122,10 @@ def customerprofile(request):
     average_rating = 0
     for review in reviews:
         average_rating += review.rating
-    average_rating = average_rating/num_reviews
+    if num_reviews == 0:
+        pass
+    else:
+        average_rating = average_rating/num_reviews
 
     return render(request, "hawkerapp/customerprofile.html", {"reviews":reviews, "range":range(5), "num_reviews":num_reviews, "average_rating":average_rating})
 
