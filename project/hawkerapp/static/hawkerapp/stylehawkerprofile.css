@@ -7,7 +7,7 @@ html{
 }
 
 .h2{
-    color: grey;
+    color: #F5765E;
     margin: 2rem;
     margin-left: 170px; 
     font-size: 3rem;
@@ -23,7 +23,8 @@ html{
 
 .stall_box{
     width: 70%;
-    box-shadow: 2px 2px 30px black;
+	box-shadow: 0 6px 6px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     background-color: white;
     padding: 20px;
     margin: 15px;
@@ -34,7 +35,7 @@ html{
 
 .stall_box:hover{
     transform: translateY(-10px);
-    transition: all ease 0.3s;
+	box-shadow: 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 
@@ -68,12 +69,12 @@ html{
 .stall_container .stall_box li{
     display: flex;
     flex-direction: row;
-    color: rgb(14, 14, 14);
+    color: #F5765E;
     font-size: 1.2rem;
     margin: 1.1rem 0;
 }
 
 .stall_container .stall_box li span{
-    color:rgb(165, 165, 165);
+    color:rgb(127, 127, 127);
     padding-left: 15px;
 }
