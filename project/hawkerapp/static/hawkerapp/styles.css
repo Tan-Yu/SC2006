@@ -27,21 +27,18 @@ footer{
 
 
 /* MENU CSS */
-.menu a:link, a:visited {
+.menu a:link, a:visited, a:active{
 	font-family: 'Inter';
 	color: #F5765E;
 	text-decoration: none;
 	font-weight: 400;
-  }
+}
   
-  /* mouse over link */
-  .menu a:hover {
-	color: hotpink;
-  }
+
   
   /* selected link */
   .menu a:active {
-	color: blue;
+	color: #F5765E;
   }
 
 
@@ -50,7 +47,7 @@ footer{
 	flex-direction: row;
 	width: 100%;
 	/* background-color: aqua	; */
-	min-height:50px;
+	min-height:55px;
 
 	align-items: center;
 	justify-content: space-around;
@@ -87,6 +84,8 @@ footer{
 
 .menu li a{
 	padding-bottom:15px;
+	padding-top:15px;
+
 	padding-left: 15px;
 	padding-right: 15px;
 }
@@ -97,6 +96,8 @@ footer{
 
 .menu li a:hover{
 	border-bottom: 3px solid #F5765E;
+	border-top: 3px solid #F5765E;
+
 }
 
 .post-button{
@@ -297,6 +298,14 @@ footer{
 	text-decoration:none;
 
 }
+
+
+
+.langing-categories-icon  a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
 .langing-categories-icon a p{
 	text-decoration:none;
 }
@@ -415,6 +424,11 @@ footer{
 	flex-direction: column;
 	align-items: center;
 	padding-top: 10px;
+}
+
+.landing-reviews-scroll a{
+	text-decoration: none;
+	color: #F5765E;
 }
 
 .landing-reviews-scroll::-webkit-scrollbar {

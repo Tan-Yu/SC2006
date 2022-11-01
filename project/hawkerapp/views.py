@@ -251,35 +251,66 @@ def map(request):
     return render(request, "hawkerapp/map.html")
 
 
+def search(query):
+    results = []
+    d = {}
+    menu_list = Menu.objects.filter(name__contains=query)
+    repeat = []
+    num_stores = 0
+    for menu in menu_list:
+        to_add = []
+        stalls = Stall.objects.filter(menus=menu)
+        for stall in stalls:
+            if stall.id not in repeat:
+                to_add.append(stall.id)
+                num_stores += 1
+        results.append(Stall.objects.filter(pk__in=to_add))
+        repeat += to_add
+    if num_stores == 0:
+        results = None
+    return results
+
+
 def bbq(request):
-    stalls = Stall.objects.filter(name__contains='Duck')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("bbq")})
 
 def seafood(request):
-    stalls = Stall.objects.filter(name__contains='seafood')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    # results = []
+    # d = {}
+    # menu_list = Menu.objects.filter(name__contains="seafood")
+    # repeat = []
+    # num_stores = 0
+    # for menu in menu_list:
+    #     to_add = []
+    #     stalls = Stall.objects.filter(menus=menu)
+    #     for stall in stalls:
+    #         if stall.id not in repeat:
+    #             to_add.append(stall.id)
+    #             num_stores += 1
+    #     results.append(Stall.objects.filter(pk__in=to_add))
+    #     repeat += to_add
+    # if num_stores == 0:
+    #     results = None
+    # # stalls = Stall.objects.filter(name__contains='seafood')
+    # return render(request, 'hawkerapp/ladningcategories.html', {"results": results})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("seafood")})
+
 
 def malay(request):
-    stalls = Stall.objects.filter(name__contains='malay')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("malay")})
 
 def indian(request):
-    stalls = Stall.objects.filter(name__contains='indian')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("indian")})
 
 def chinese(request):
-    stalls = Stall.objects.filter(name__contains='chinese')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
-
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("chinese")})
+   
 def western(request):
-    stalls = Stall.objects.filter(name__contains='western')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("western")})
 
 def desserts(request):
-    stalls = Stall.objects.filter(name__contains='desserts')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("desserts")})
 
 def drinks(request):
-    stalls = Stall.objects.filter(name__contains='drinks')
-    return render(request, 'hawkerapp/bbq.html', {'stalls': stalls})
+    return render(request, 'hawkerapp/ladningcategories.html', {'results': search("drinks")})
 
