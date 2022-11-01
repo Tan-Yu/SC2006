@@ -36,7 +36,7 @@
                 </div>
                 <div class="about">
                     <li>Stall Name: <span>{{key.name}}</span></li>
-                    <li>Average Rating: <span>{{ value }}</span></li>                        
+                    <li>Average Rating: <span>{{ value|floatformat:1 }}</span></li>                        
                     <li>Total Reviews: <span>{{key.reviews.count}}</span></li>
                 </div>
             </div>
