@@ -31,14 +31,21 @@
         margin-bottom: 10px;
     }
 
-    .form-control input,
+    .form-control input {
+        border: 2px solid #F5765E;
+        border-radius: 20px;
+        padding: 10px;
+        display: block;
+        width: 40%;
+    }
+
     .form-control select,
     .form-control textarea {
         border: 2px solid #F5765E;
         border-radius: 20px;
         padding: 10px;
         display: block;
-        width: 95%;
+        width: 100%;
     }
     
     .column{
@@ -167,7 +174,7 @@
     <div class="add-review-text">
         <h1>Leave Review </h1>
     </div>
-    <div>
+        <div>
     <form method = "POST" enctype="multipart/form-data" action="{% url 'addreview' stall_id=stall.id %}" class = "form-control">
         {% csrf_token %}
 
@@ -193,15 +200,17 @@
 
 
                     {% comment %} {{ review.image }} {% endcomment %}
+
                     <div class="file-input">
-                        <input type="file" name="image"  id="file" accept="image/*" class="file">
+                        <input type="file" name="image"  id="file" accept="image/*" class="file" required>
                         <label for="file">Choose a file</label>
                     </div>
 
                     <button type = "submit", name = "submit_review", class = submit-button >Submit Review</button>
                 </div>
             </div>
-        </div>
+    </div>
+
     </form>
 </div>
 

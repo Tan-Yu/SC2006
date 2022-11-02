@@ -67,7 +67,7 @@
               {% if stall.reviews.count == 0%}
               <h3>0</h3>
               {% else %}
-              <h3>{{stall.rating|div:stall.reviews.count}}</h3>
+              <h3>{{stall.rating|div:stall.reviews.count|floatformat:1}}</h3>
               {% endif %}
             </div>
           </div>
