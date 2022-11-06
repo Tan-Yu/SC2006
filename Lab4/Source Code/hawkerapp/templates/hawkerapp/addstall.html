@@ -1,0 +1,25 @@
+{% extends "hawkerapp/layout.html" %}
+{%block head%}
+    <title> Add Stall </title>
+{%endblock%}
+{%block body%}
+    <br>
+    <br>
+    <div class="add-stall-page">
+        <h1>Add A New Stall Profile</h1>
+        <form enctype="multipart/form-data" action="{% url 'addstall'%}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="stallname" placeholder="Stall Name">
+            <select name="location">
+                {% for loc in location %}
+                    <option value="{{ loc.id }}">{{loc.name}}</option>
+                {% endfor %}
+            </select>
+            <label for="file" class="custom-file-upload">
+                Upload a Picture of Stall!
+            </label> 
+            <input type="file" id="file" name="image" accept="image/*">
+            <input type="submit">
+        </form>
+    </div>
+{%endblock%}

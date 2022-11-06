@@ -1,0 +1,128 @@
+{% extends "hawkerapp/layout.html" %}
+{% comment %} 
+{% extends "hawkerapp/layout.html" %}
+{% load static %}
+{%block head%}
+    <title> {{request.user}} </title>
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+    </style>
+{%endblock%}
+{%block body%}
+    <div class="landing">
+    <div class="landing-text"> <h1>Profile Page</h1></div>
+    <h1 style="color:white;"> Past Reviews </h1>
+    <table style="background:grey;">
+        <tr>
+          <th>Stall Name</th>
+          <th>Description</th>
+          <th>Rating</th>
+        </tr>
+        {% for review in reviews %}
+        <tr>
+            <td>{{review.stall.name}}</td>
+            <td>{{review.description}}</td>
+            <td>{{review.rating}}/5</td>
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+{%endblock%} {% endcomment %}
+
+
+{% load static %}
+{%block head%}
+    <title> {{request.user}} </title>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'hawkerapp/styleuserprofile.css' %}">
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+    </style>
+{%endblock%}
+{%block body%}
+<div class="header__wrapper">
+  <header>
+      <img src = "{% static 'hawkerapp/images/profilebackground.jpg' %}" alt="coverphoto">
+  </header>
+  <br>
+  <br>
+  <div class="cols__container">
+      <div class="left__col">
+          <div class="img__container">
+              <img src="{% static 'hawkerapp/images/placeholderprofilepic.jpg' %}" alt="Username">
+          </div> 
+          <h2>{{request.user}}</h2>
+          
+          <ul class="about">
+              <li><span>{{num_reviews}} </span>Posts</li>
+              <li><span>{{average_rating}}</span>Average Rating</li>
+          </ul> 
+
+          {% comment %} <div class="content">
+              <p>
+                  Hello Im a foodie lover. Crazy about good foods!!
+              </p>
+
+          </div> {% endcomment %}
+      </div>
+
+      <div class="right__col"> 
+
+          <h2>POSTS</h2>
+          {% for review in reviews%}
+          <div class="review-box-container">
+              <div class="review-box">
+                  <div class="box-top">
+                      <div class="profile">
+                          <div class="profile-img">
+                              <img src = {{review.image.url}}>
+                          </div>
+
+                          <div class="username">
+                              <strong>{{review.stall.name}}</strong>
+                              {% comment %} <span>@elizebth123</span> {% endcomment %}
+                          </div>
+                      </div>
+                      <div class="reviews">
+                          {% for r in range %}
+                              {% if r < review.rating%}
+                                <i class="fas fa-star"></i>
+                              {% else%}
+                                <i class="far fa-star"></i>
+                              {% endif %}
+                          {% endfor %}
+                      </div> 
+                  </div>
+
+                  <div class="user-comment">
+                      <p>{{review.description}}</p>
+                  </div>
+              </div>
+            
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</div>
+{%endblock%} 
