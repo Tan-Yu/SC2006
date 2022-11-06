@@ -796,7 +796,6 @@ body > div.landing-reviews-div > div.landing-reviews-scroll > a > div {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border-radius: 25px;
-  overflow-y: scroll;
 }
 
 .stall-card .stall-card-inner-div {
@@ -856,6 +855,15 @@ h2 {
 .stall-card .stall-reviews {
   margin: 0;
   margin-bottom: 10px;
+}
+
+.stall-card .stall-reviews ul {
+  overflow-y: scroll;
+  max-height: 110px;
+}
+
+.stall-card .stall-reviews ul::-webkit-scrollbar {
+  display: none;
 }
 
 .stall-card li {
