@@ -1,0 +1,83 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-xwequiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'hawkerapp/styles.css' %}" />
+
+    <title>Document</title>
+    {% block head %}
+    {% endblock %}
+</head>
+    <body>
+        <!-- -- Header Menu -->
+        <div class="header-div">
+        <div>
+            <h2>Wholesale App</h2>
+        </div>
+        <div class="header-right">
+            {% for group in request.user.groups.all %}
+                {% if group.name == "customer" %}
+                    <ul class="menu">
+                        <li><a href="{% url 'index' %}" >Home</a></li>
+                        <li><a href="{% url 'map' %}">Map</a></li>
+                        <li><a href="{% url 'customerprofile' %}"> Profile </a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                {% endif %}
+                {% if group.name == "hawker" %}
+                    <ul class="menu">
+                        <li><a href="{% url 'addstall' %}" >Add Stall</a></li>
+                        <li><a href="{% url 'map' %}">Map</a></li>    
+                        <li><a href="{% url 'hawkerprofile' %}"> Profile</a><li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+        {%block body%}
+        {%endblock%}
+    </body>
+
+    <!-- -- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="footer-top">
+                <div class="footer-left">
+                    <h2>About</h2>
+                    <p>Wholesale App is a web app designed to help Singaporeans satisfy their cravings for cheap, good, and delicious hawker food. Hawker owners  </p>
+                </div>
+                <div class="footer-right">
+                    <h2>Categories</h2>
+                    <ul class="footer-categories">
+                        <li><a href="{% url 'bbq' %}">BBQ</a></li>
+                        <li><a href="{% url 'seafood' %}">Seafood</a></li>
+                        <li><a href="{% url 'malay' %}">Malay</a></li>
+                        <li><a href="{% url 'indian' %}">Indian</a></li>
+                        <li><a href="{% url 'chinese' %}">Chinese</a></li>
+                        <li><a href="{% url 'western' %}">Western</a></li>
+                        <li><a href="{% url 'desserts' %}">Desserts</a></li>
+                        <li><a href="{% url 'drinks' %}">Drinks</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>Copyright © 2017 All Rights Reserved by Wholesale App.</p>
+                </div>
+                <div class="footer-socials">
+                    
+                    <div class="footer-social-bubble facebook"></div>
+                    <div class="footer-social-bubble instagram"></div>
+                    <div class="footer-social-bubble twitter"></div>
+                    <div class="footer-social-bubble tiktok"></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</html>

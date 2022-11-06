@@ -1,0 +1,308 @@
+@import url(https://rsms.me/inter/inter.css);
+
+body{
+    color: rgb(24, 23, 23);
+    font-family: 'Inter';
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+    font-size: 16px;
+} 
+
+.cols__container ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    font-size: 16px;
+    color:#fff;
+    background: pink;
+    border-radius: .5rem;
+    cursor: pointer;
+    padding:.7rem 1rem;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background: lightgray;
+    letter-spacing: .1rem;
+}
+
+.cols__container .left__col{
+    padding: 25px 20px;
+    text-align: center;
+    max-width: 400px;
+    position: relative;
+    margin: 100px auto 40px; 
+}
+
+.cols__container .left__col .img__container{
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cols__container .left__col .img__container img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.cols__container .left__col h2{
+    margin-top: 60px;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.cols__container .left__col p{
+    font-size: 0.9rem;
+    color:black;
+    margin: 5px;
+}
+
+.cols__container .left__col .about{
+    justify-content: center;
+    position: relative;
+    margin: 35px 0;
+}
+
+.cols__container .left__col .about li{
+    display: flex;
+    flex-direction: column;
+    color: rgb(127, 127, 127);
+    font-size: 0.9rem;
+    margin: 0 70px;
+}
+
+.cols__container .left__col .about li span{
+    color:rgb(24, 23, 23);
+    font-weight: 600;
+}
+
+.cols__container .left__col .about::after{
+    position: absolute;
+    content: "";
+    bottom: -16px;
+    display: block;
+    background: #ccc;
+    height: 1px;
+    width: 100%;
+}
+
+
+
+
+.cols__container .left__col .content p{
+    font-size: 1rem;
+    color: black;
+    line-height: 1.8rem;
+}
+
+.cols__container .left__col a{
+    margin: 0 20px;
+    background-color: #FFFFFF;
+    border: #F5765E solid 2px;
+    color: #F5765E;
+    font-weight: 400;
+
+}
+
+.cols__container .left__col a:hover{
+    margin: 0 20px;
+    font-size: 1rem;
+    font-family: "inter";
+    letter-spacing: normal;
+    background-color: #F5765E;
+    color: #FFFFFF;
+}
+
+.cols__container .right__col .dishes{
+    padding: 2rem 9%;
+    padding-top:0;
+}
+
+.cols__container .right__col .dishes .heading{
+    text-align: center;
+    color: black;
+    font-size: 1.5rem;
+    padding-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.cols__container .right__col .dishes .box__container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.5rem;
+}
+
+
+
+.cols__container .right__col .box__container .box{
+    background: #fff;
+    border:.1rem solid rgba(0,0,0,.2);
+    /* border-radius: .5rem; */
+    /* box-shadow: var(--box-shadow);  */
+    text-align: center;   
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cols__container .right__col .box__container .box:hover {
+	box-shadow: 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+/* .cols__container .right__col .box__container .box .image{
+    height: 25rem;
+    width: 100%;
+    padding:1.5rem;
+    overflow: hidden;
+    position: relative;
+} */
+
+.cols__container .right__col .box__container .box .image img{
+    padding: 10px;
+    width: 80%;
+    height: auto;
+    border-radius: 25px;
+    object-fit: cover;
+}
+
+
+
+.cols__container .right__col .box__container .box h3{
+    color: black;
+    font-size: 1.8rem;
+}
+
+.cols__container .right__col .box__container .box span{
+    color: grey;
+    font-weight: bolder;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+.right__col .review-box-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.review-box{
+
+    width:80%;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #fff;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    border-radius: 25px;
+    margin-bottom: 20px;
+
+    padding: 20px;
+    margin: 15px;
+    cursor: pointer;
+
+}
+
+.review-box:hover {
+	box-shadow: 0 5px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+.profile-img{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.profile-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+}
+
+.username{
+    display: flex;
+    flex-direction: column;
+}
+
+.username strong{
+    color: black;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.username span{
+    color: gray;
+    font-size: 0.8rem;
+}
+
+.reviews{
+    color: yellow
+}
+
+.box-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-comment{
+    font-size: 0.9rem;
+    color:rgb(24, 23, 23);
+}
+
+.review-box:hover{
+    transform: translateY(-10px);
+    transition: all ease 0.3s; 
+    /* transition is how long it take to transform */
+
+}
+
+.review .sub-heading{
+    text-align: center;
+    color:gray;
+    font-size: 1rem;
+    padding-top: 0.5rem;
+}
+
+.review .heading{
+    text-align: center;
+    color:black;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
